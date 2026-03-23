@@ -13,7 +13,7 @@ export const RouteNetwork = ({ routes }: RouteNetworkProps) => {
   return (
     <div className="grid gap-6 md:grid-cols-3">
       {routes.map((route, i) => (
-        <div key={i} className="card-premium p-8 rounded-[2.5rem] bg-card/40 backdrop-blur-md border border-border shadow-sm group hover:bg-white/5 transition-all">
+        <div key={i} className="card-premium p-8 rounded-[2.5rem] bg-card/40 backdrop-blur-md border border-border shadow-sm group hover:bg-primary/5 transition-all">
           <div className="flex items-center justify-between mb-6">
             <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
               <Navigation className="h-6 w-6" />

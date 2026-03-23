@@ -20,7 +20,7 @@ const MapComponent = dynamic(() => import("./MapComponent"), {
 
 export const LiveTelemetry = () => {
   return (
-    <div className="lg:col-span-4 min-h-[450px] rounded-[3rem] border bg-slate-50 dark:bg-[#0f1115] shadow-2xl border-border dark:border-white/5 relative overflow-hidden group transition-colors duration-500">
+    <div className="lg:col-span-4 min-h-[450px] rounded-[3rem] border bg-card/10 dark:bg-card/20 backdrop-blur-sm shadow-2xl border-border relative overflow-hidden group transition-colors duration-500">
       {/* Real Leaflet Map */}
       <div className="absolute inset-0">
         <MapComponent />
@@ -40,7 +40,7 @@ export const LiveTelemetry = () => {
           </div>
         </div>
         
-        <div className="mt-auto p-6 m-8 rounded-[2rem] bg-card/40 backdrop-blur-xl border border-border dark:border-white/10 shadow-2xl max-w-sm pointer-events-auto">
+        <div className="mt-auto p-6 m-8 rounded-[2rem] bg-card/40 backdrop-blur-xl border border-border shadow-2xl max-w-sm pointer-events-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">

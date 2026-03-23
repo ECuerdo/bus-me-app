@@ -47,7 +47,7 @@ export default function RoutesModule() {
           />
         </div>
         <div className="flex items-center gap-2">
-           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-white/5 transition-all bg-card/40 border-border text-primary">
+           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-all bg-card/40 border-border text-primary">
              <Filter className="h-4 w-4" />
              Layer Filter
            </Button>

@@ -18,7 +18,7 @@ export const GlobalRevenue = ({ revenue }: GlobalRevenueProps) => {
           <span className="text-4xl font-black tracking-tighter">₱{revenue.toLocaleString()}</span>
           <p className="text-[10px] font-bold opacity-70 uppercase tracking-widest mt-1">Net Operating Yield</p>
         </div>
-        <div className="pt-4 border-t border-white/20">
+        <div className="pt-4 border-t border-white/10">
           <Button variant="secondary" className="w-full h-11 rounded-xl bg-white/10 hover:bg-white/20 border-none text-white font-bold text-xs">Analyze Cashflow</Button>
         </div>
       </div>

@@ -34,7 +34,7 @@ export const RoutesTable = ({ routes }: RoutesTableProps) => {
         </TableHeader>
         <TableBody>
           {routes.map((route) => (
-            <TableRow key={route.id} className="group h-24 hover:bg-white/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={route.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
               <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{route.id}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-3">

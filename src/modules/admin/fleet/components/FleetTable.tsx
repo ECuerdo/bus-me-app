@@ -18,7 +18,7 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-[2.5rem] border border-white/40 bg-white/40 backdrop-blur-md shadow-sm overflow-hidden"
+      className="rounded-[2.5rem] border border-border/50 bg-card/40 backdrop-blur-md shadow-sm overflow-hidden"
     >
       <Table>
         <TableHeader className="bg-primary/5 h-16">
@@ -34,7 +34,7 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
         </TableHeader>
         <TableBody>
           {buses.map((bus) => (
-            <TableRow key={bus.id} className="group h-24 hover:bg-white/60 transition-colors border-b last:border-none border-white/20">
+            <TableRow key={bus.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border/10">
               <TableCell className="px-8 font-black text-sm text-primary tracking-tighter tabular-nums">{bus.id}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-3">
@@ -63,8 +63,9 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
                  <div className="flex flex-col gap-1.5 w-24">
                    <div className="h-1.5 w-full bg-muted/30 rounded-full overflow-hidden">
                       <div className={cn("h-full rounded-full", 
-                        bus.condition === 'Excellent' ? "w-[98%] bg-emerald-500" : 
-                        bus.condition === 'Fair' ? "w-[65%] bg-amber-500" : "w-[20%] bg-rose-500"
+                         bus.condition === 'Excellent' ? "w-[98%] bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" : 
+                         bus.condition === 'Fair' ? "w-[65%] bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]" : 
+                         "w-[20%] bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.4)]"
                       )} />
                    </div>
                    <span className="text-[8px] font-black uppercase text-muted-foreground tracking-widest">{bus.condition}</span>
@@ -72,7 +73,7 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
               </TableCell>
               <TableCell><StatusBadge status={bus.status} /></TableCell>
               <TableCell className="text-right px-8">
-                 <Button variant="ghost" size="icon" className="h-9 w-9 rounded-xl hover:bg-white/80 transition-all opacity-0 group-hover:opacity-100">
+                 <Button variant="ghost" size="icon" className="h-9 w-9 rounded-xl hover:bg-primary/10 transition-all opacity-0 group-hover:opacity-100">
                     <Settings2 className="h-4 w-4" />
                  </Button>
               </TableCell>

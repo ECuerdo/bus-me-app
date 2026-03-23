@@ -27,7 +27,7 @@ export const ComplianceTable = ({ records }: ComplianceTableProps) => {
         </TableHeader>
         <TableBody>
           {records.map((record, i) => (
-            <TableRow key={i} className="group h-20 hover:bg-white/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={i} className="group h-20 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
               <TableCell className="px-8 font-black text-sm text-foreground">{record.item}</TableCell>
               <TableCell>
                 <Badge variant="outline" className="font-black text-[10px] border-primary/20 text-primary">{record.unit}</Badge>

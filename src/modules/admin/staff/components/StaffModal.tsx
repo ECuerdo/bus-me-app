@@ -17,7 +17,7 @@ export const StaffModal = () => {
           Register Staff
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-none rounded-[3rem] glass">
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-border/50 rounded-[2.5rem] bg-background/80 backdrop-blur-2xl shadow-2xl">
          <div className="p-10 bg-gradient-to-br from-primary/10 dark:from-primary/20 via-transparent to-transparent">
             <DialogHeader className="mb-8">
               <DialogTitle className="text-3xl font-black tracking-tighter text-foreground">Personnel Onboarding</DialogTitle>

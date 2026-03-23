@@ -27,7 +27,7 @@ export const CargoTable = ({ cargo }: CargoTableProps) => {
         </TableHeader>
         <TableBody>
           {cargo.map((item) => (
-            <TableRow key={item.id} className="group h-24 hover:bg-white/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={item.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
               <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{item.id}</TableCell>
               <TableCell>
                 <div className="flex flex-col text-foreground">

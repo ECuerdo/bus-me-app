@@ -13,7 +13,7 @@ interface OccupancyManifestProps {
 
 export const OccupancyManifest = ({ occupancy }: OccupancyManifestProps) => {
   return (
-    <div className="rounded-[2.5rem] border bg-white/40 backdrop-blur-md p-8 shadow-sm border-white/40">
+    <div className="rounded-[2.5rem] border bg-card/40 backdrop-blur-md p-8 shadow-sm border-border">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-black tracking-tighter text-foreground">Passenger Density</h3>
         <TrendingUp className="h-5 w-5 text-primary" />

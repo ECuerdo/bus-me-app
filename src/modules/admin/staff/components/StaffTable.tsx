@@ -55,7 +55,7 @@ export const StaffTable = ({ staff }: StaffTableProps) => {
           </TableHeader>
           <TableBody>
             {staff.map((person) => (
-              <TableRow key={person.id} className="group h-24 hover:bg-white/5 transition-colors border-b last:border-none border-border">
+              <TableRow key={person.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
                 <TableCell className="px-8 font-black text-sm text-primary tracking-tighter tabular-nums">{person.id}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
@@ -97,11 +97,11 @@ export const StaffTable = ({ staff }: StaffTableProps) => {
                       </Button>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-10 w-10 hover:bg-white/10 rounded-xl transition-all shadow-none border-none text-foreground">
+                          <Button variant="ghost" size="icon" className="h-10 w-10 hover:bg-primary/10 rounded-xl transition-all shadow-none border-none text-foreground">
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-2xl glass border-primary/10 shadow-2xl" sideOffset={10}>
+                        <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-2xl bg-background/80 backdrop-blur-2xl border-border/50 shadow-2xl" sideOffset={10}>
                           <DropdownMenuLabel className="text-[10px] font-black uppercase tracking-widest px-2 py-1.5 opacity-60">Staff Ops</DropdownMenuLabel>
                           <DropdownMenuSeparator className="bg-primary/5" />
                           <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors">

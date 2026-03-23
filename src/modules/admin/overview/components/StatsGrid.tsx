@@ -20,8 +20,8 @@ export const StatsGrid = ({ stats }: StatsGridProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: i * 0.1, duration: 0.5 }}
           className={cn(
-            "card-premium group relative p-6 cursor-pointer border-white/40 shadow-sm rounded-[2rem] bg-card/40 backdrop-blur-md border overflow-hidden",
-            "before:absolute before:inset-0 before:rounded-[2rem] before:bg-gradient-to-br before:from-white/40 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity"
+            "card-premium group relative p-6 cursor-pointer rounded-[2rem] bg-card/40 backdrop-blur-md border border-border/50 shadow-sm overflow-hidden transition-all duration-300",
+            "before:absolute before:inset-0 before:rounded-[2rem] before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity"
           )}
         >
           <div className="flex items-center justify-between mb-4">

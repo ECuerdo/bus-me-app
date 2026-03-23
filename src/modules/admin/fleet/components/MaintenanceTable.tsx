@@ -15,7 +15,11 @@ interface MaintenanceTableProps {
 
 export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="rounded-[2.5rem] border border-white/40 bg-white/40 backdrop-blur-md shadow-sm overflow-hidden text-center">
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      className="rounded-[2.5rem] border border-border/50 bg-card/40 backdrop-blur-md shadow-sm overflow-hidden text-center"
+    >
       <Table>
         <TableHeader className="bg-primary/5 h-16">
           <TableRow className="hover:bg-transparent border-none font-black text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -30,7 +34,7 @@ export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
         </TableHeader>
         <TableBody>
           {logs.map((log) => (
-            <TableRow key={log.id} className="group h-24 hover:bg-white/60 transition-colors border-b last:border-none border-white/20">
+            <TableRow key={log.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border/10">
                <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{log.id}</TableCell>
                <TableCell className="font-bold text-sm tracking-tight text-foreground">{log.plate}</TableCell>
                <TableCell>
@@ -38,7 +42,7 @@ export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
                </TableCell>
                <TableCell className="font-black text-xs tabular-nums text-muted-foreground">{log.schedule}</TableCell>
                <TableCell>
-                  <div className={cn("text-[9px] font-black uppercase tracking-widest text-foreground", log.cert.includes('Expired') ? "text-rose-500" : "text-emerald-500")}>
+                  <div className={cn("text-[9px] font-black uppercase tracking-widest", log.cert.includes('Expired') ? "text-rose-500" : "text-emerald-500")}>
                      {log.cert}
                   </div>
                </TableCell>

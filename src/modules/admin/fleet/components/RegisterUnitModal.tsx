@@ -16,7 +16,7 @@ export const RegisterUnitModal = () => {
           Register New Unit
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-none rounded-[2rem] glass">
+      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-border/50 rounded-[2.5rem] bg-background/80 backdrop-blur-2xl shadow-2xl">
          <div className="p-8 bg-gradient-to-br from-primary/10 dark:from-primary/20 via-transparent to-transparent">
           <DialogHeader>
             <DialogTitle className="text-2xl font-black tracking-tighter text-foreground">New Asset Registration</DialogTitle>
@@ -28,21 +28,21 @@ export const RegisterUnitModal = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2.5">
                 <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Plate Identifier</Label>
-                <Input placeholder="ABC-1234" className="h-12 bg-white/50 border-white/40 focus-visible:ring-primary/30 rounded-xl font-bold" />
+                <Input placeholder="ABC-1234" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background" />
               </div>
               <div className="space-y-2.5">
                 <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Capacity (Seats)</Label>
-                <Input type="number" placeholder="45" className="h-12 bg-white/50 border-white/40 focus-visible:ring-primary/30 rounded-xl font-bold" />
+                <Input type="number" placeholder="45" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
                <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Unit Class</Label>
-                  <Input placeholder="Executive" className="h-12 bg-white/50 border-white/40 focus-visible:ring-primary/30 rounded-xl font-bold" />
+                  <Input placeholder="Executive" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background" />
                </div>
                <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Model Name</Label>
-                  <Input placeholder="Higer 2024" className="h-12 bg-white/50 border-white/40 focus-visible:ring-primary/30 rounded-xl font-bold" />
+                  <Input placeholder="Higer 2024" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background" />
                </div>
             </div>
           </div>
