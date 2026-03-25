@@ -58,7 +58,7 @@ export function NavUser({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 rounded-2xl glass border-primary/10 shadow-2xl"
+        className="w-56 rounded-2xl border-primary/10 shadow-2xl bg-popover text-popover-foreground"
         align="end"
         sideOffset={8}
       >

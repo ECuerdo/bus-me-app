@@ -1,6 +1,5 @@
 "use client"
 
-import * as React from "react"
 import {
   Bus,
   LayoutDashboard,
@@ -14,6 +13,9 @@ import {
   ChevronRight,
   LogOut,
   BarChart3,
+  RadioTower,
+  Siren,
+  Banknote,
 } from "lucide-react"
 
 import {
@@ -38,6 +40,7 @@ const navGroups = [
     label: "Operational Intelligence",
     items: [
       { icon: LayoutDashboard, label: "Live Overview", href: "/admin" },
+      { icon: RadioTower, label: "Live Dispatch", href: "/admin/dispatch" },
     ],
   },
   {
@@ -58,6 +61,13 @@ const navGroups = [
     label: "Fiscal Operations",
     items: [
       { icon: Ticket, label: "Revenue Hub", href: "/admin/bookings" },
+      { icon: Banknote, label: "Fare Matrix", href: "/admin/fares" },
+    ],
+  },
+  {
+    label: "Customer Experience",
+    items: [
+      { icon: Users, label: "Passenger CRM", href: "/admin/crm" },
     ],
   },
   {
@@ -66,6 +76,7 @@ const navGroups = [
       { icon: BarChart3, label: "Market Intelligence", href: "/admin/analytics" },
       { icon: Star, label: "Driver Performance", href: "/admin/performance" },
       { icon: ShieldCheck, label: "Safety & Compliance", href: "/admin/compliance" },
+      { icon: Siren, label: "Incident Command", href: "/admin/incidents" },
     ],
   },
 ]

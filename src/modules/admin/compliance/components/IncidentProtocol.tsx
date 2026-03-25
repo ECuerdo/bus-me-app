@@ -22,7 +22,7 @@ export const IncidentProtocol = ({ logs }: IncidentProtocolProps) => {
       <p className="text-sm font-medium text-muted-foreground leading-relaxed">Automated tracking of network deviations and mechanical failures.</p>
       <div className="space-y-4">
         {logs.map((log, i) => (
-          <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-card/40 border border-border shadow-inner">
+          <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-card/40 border border-primary/5 text-card-foreground shadow-inner">
             <div className="flex flex-col">
               <span className="font-black text-xs text-foreground">{log.type}</span>
               <span className="text-[10px] font-bold text-muted-foreground uppercase opacity-60">{log.unit} • {log.date}</span>

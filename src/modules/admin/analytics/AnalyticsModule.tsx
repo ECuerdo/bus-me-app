@@ -11,6 +11,9 @@ import { useAnalytics } from "./hooks/useAnalytics";
 import { KPIsGrid } from "./components/KPIsGrid";
 import { RevenueVelocity } from "./components/RevenueVelocity";
 import { NetworkDistribution } from "./components/NetworkDistribution";
+import { OpexReport } from "./components/OpexReport";
+import { RouteEfficiency } from "./components/RouteEfficiency";
+import { DriverTelemetry } from "./components/DriverTelemetry";
 
 export default function AnalyticsModule() {
   const { 
@@ -33,7 +36,7 @@ export default function AnalyticsModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-           <Button variant="outline" className="h-11 px-6 rounded-2xl gap-2 font-black transition-all hover:bg-primary/5 hover:border-primary/20 bg-muted/50 border-border text-foreground">
+           <Button variant="outline" className="h-11 px-6 rounded-2xl gap-2 font-black transition-all hover:bg-primary/5 hover:border-primary/20 bg-muted/50 border-primary/5 text-card-foreground text-foreground">
              <Calendar className="h-4 w-4" />
              Fiscal Year 2024
            </Button>
@@ -53,6 +56,12 @@ export default function AnalyticsModule() {
 
         {/* Global Network Hubs */}
         <NetworkDistribution distribution={networkDistribution} />
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-10 mt-6 mt-10">
+         <OpexReport />
+         <RouteEfficiency />
+         <DriverTelemetry />
       </div>
     </div>
   );

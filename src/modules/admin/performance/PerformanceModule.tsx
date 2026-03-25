@@ -51,7 +51,7 @@ export default function PerformanceModule() {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
                     <Input 
                       placeholder="Find driver..." 
-                      className="h-9 w-48 pl-9 bg-muted/50 border-border rounded-xl text-xs font-bold text-foreground placeholder:text-muted-foreground/40"
+                      className="h-9 w-48 pl-9 bg-muted/50 border-primary/5 text-card-foreground rounded-xl text-xs font-bold text-foreground placeholder:text-muted-foreground/40"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />

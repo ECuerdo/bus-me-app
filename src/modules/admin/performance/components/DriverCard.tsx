@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Star, Clock, TrendingUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -16,11 +15,8 @@ interface DriverCardProps {
 
 export const DriverCard = ({ driver, index }: DriverCardProps) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: index * 0.1 }}
-      className="p-6 rounded-[2.5rem] bg-card/40 backdrop-blur-md border border-border shadow-sm flex items-center justify-between group hover:bg-accent/5 transition-all"
+    <div 
+      className="p-6 rounded-2xl bg-card border border-primary/5 shadow-md flex items-center justify-between group hover:bg-accent/5 transition-all"
     >
        <div className="flex items-center gap-4">
           <Avatar className="h-14 w-14 rounded-2xl shadow-xl ring-2 ring-primary/5 group-hover:ring-primary/20 transition-all">
@@ -57,6 +53,6 @@ export const DriverCard = ({ driver, index }: DriverCardProps) => {
              <TrendingUp className="h-5 w-5" />
           </Button>
        </div>
-    </motion.div>
+    </div>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { DashboardStat } from "../types";
@@ -14,13 +13,10 @@ export const StatsGrid = ({ stats }: StatsGridProps) => {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {stats.map((stat, i) => (
-        <motion.div
+        <div
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1, duration: 0.5 }}
           className={cn(
-            "card-premium group relative p-6 cursor-pointer rounded-[2rem] bg-card/40 backdrop-blur-md border border-border/50 shadow-sm overflow-hidden transition-all duration-300",
+            "group relative p-6 cursor-pointer rounded-2xl bg-card border border-primary/5 shadow-md overflow-hidden transition-all duration-300",
             "before:absolute before:inset-0 before:rounded-[2rem] before:bg-gradient-to-br before:from-primary/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity"
           )}
         >
@@ -38,7 +34,7 @@ export const StatsGrid = ({ stats }: StatsGridProps) => {
               {stat.value}
             </h2>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

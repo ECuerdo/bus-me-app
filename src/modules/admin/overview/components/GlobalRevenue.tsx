@@ -10,7 +10,7 @@ interface GlobalRevenueProps {
 
 export const GlobalRevenue = ({ revenue }: GlobalRevenueProps) => {
   return (
-    <div className="rounded-[2.5rem] border bg-gradient-to-br from-primary via-primary to-primary/80 p-8 text-primary-foreground shadow-2xl shadow-primary/20 relative overflow-hidden group border-none">
+    <div className="rounded-2xl border bg-gradient-to-br from-primary via-primary to-primary/80 p-8 text-primary-foreground shadow-2xl shadow-primary/20 relative overflow-hidden group border-none">
       <Zap className="absolute -right-8 -top-8 h-40 w-40 opacity-10 group-hover:scale-110 transition-transform duration-700" />
       <div className="relative z-10 space-y-4">
         <h3 className="text-xl font-black tracking-tighter leading-none">Global Revenue</h3>

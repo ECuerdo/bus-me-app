@@ -17,7 +17,7 @@ export const StaffModal = () => {
           Register Staff
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-border/50 rounded-[2.5rem] bg-background/80 backdrop-blur-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-primary/5 text-card-foreground/50 rounded-2xl bg-background/80 backdrop-blur-2xl shadow-2xl">
          <div className="p-10 bg-gradient-to-br from-primary/10 dark:from-primary/20 via-transparent to-transparent">
             <DialogHeader className="mb-8">
               <DialogTitle className="text-3xl font-black tracking-tighter text-foreground">Personnel Onboarding</DialogTitle>
@@ -29,15 +29,15 @@ export const StaffModal = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Full Name</Label>
-                  <Input placeholder="e.g. Juan Luna" className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                  <Input placeholder="e.g. Juan Luna" className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                 </div>
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Operational Role</Label>
                   <Select>
-                    <SelectTrigger className="h-12 bg-muted/50 border-border rounded-xl font-bold text-foreground">
+                    <SelectTrigger className="h-12 bg-muted/50 border-primary/5 text-card-foreground rounded-xl font-bold text-foreground">
                       <SelectValue placeholder="Select Role" />
                     </SelectTrigger>
-                    <SelectContent className="rounded-xl border-border">
+                    <SelectContent className="rounded-xl border-primary/5 text-card-foreground">
                       <SelectItem value="driver">Field Driver</SelectItem>
                       <SelectItem value="conductor">Transit Conductor</SelectItem>
                       <SelectItem value="maintenance">Maintenance Eng.</SelectItem>
@@ -49,11 +49,11 @@ export const StaffModal = () => {
               <div className="grid grid-cols-2 gap-4">
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Secure Email</Label>
-                    <Input type="email" placeholder="name@busme.pro" className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                    <Input type="email" placeholder="name@busme.pro" className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                  </div>
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Contact Signal</Label>
-                    <Input placeholder="+63 9xx xxx xxxx" className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                    <Input placeholder="+63 9xx xxx xxxx" className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                  </div>
               </div>
             </div>

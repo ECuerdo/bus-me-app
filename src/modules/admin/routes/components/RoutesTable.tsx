@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Navigation, MoreVertical } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -15,10 +14,8 @@ interface RoutesTableProps {
 
 export const RoutesTable = ({ routes }: RoutesTableProps) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-sm overflow-hidden"
+    <div 
+      className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden"
     >
       <Table>
         <TableHeader className="bg-primary/5 h-16">
@@ -34,7 +31,7 @@ export const RoutesTable = ({ routes }: RoutesTableProps) => {
         </TableHeader>
         <TableBody>
           {routes.map((route) => (
-            <TableRow key={route.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={route.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
               <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{route.id}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-3">
@@ -52,7 +49,7 @@ export const RoutesTable = ({ routes }: RoutesTableProps) => {
               </TableCell>
               <TableCell className="font-black text-xs tabular-nums text-foreground">{route.distance}</TableCell>
               <TableCell>
-                 <Badge variant="outline" className="rounded-lg h-7 px-3 border-border font-bold text-[10px] text-foreground">
+                 <Badge variant="outline" className="rounded-lg h-7 px-3 border-primary/5 text-card-foreground font-bold text-[10px] text-foreground">
                    {route.stops} Terminals
                  </Badge>
               </TableCell>
@@ -74,6 +71,6 @@ export const RoutesTable = ({ routes }: RoutesTableProps) => {
           ))}
         </TableBody>
       </Table>
-    </motion.div>
+    </div>
   );
 };

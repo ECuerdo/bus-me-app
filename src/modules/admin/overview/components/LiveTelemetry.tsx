@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const MapComponent = dynamic(() => import("./MapComponent"), { 
   ssr: false,
   loading: () => (
-    <div className="h-full w-full flex items-center justify-center bg-muted/20 animate-pulse rounded-[2.5rem]">
+    <div className="h-full w-full flex items-center justify-center bg-muted/20 animate-pulse rounded-2xl">
       <div className="flex flex-col items-center gap-4">
         <MapIcon className="h-10 w-10 text-primary/40 animate-bounce" />
         <p className="text-[10px] font-black uppercase tracking-widening text-muted-foreground">Initializing Cartographic Engine...</p>
@@ -20,7 +20,7 @@ const MapComponent = dynamic(() => import("./MapComponent"), {
 
 export const LiveTelemetry = () => {
   return (
-    <div className="lg:col-span-4 min-h-[450px] rounded-[3rem] border bg-card/10 dark:bg-card/20 backdrop-blur-sm shadow-2xl border-border relative overflow-hidden group transition-colors duration-500">
+    <div className="lg:col-span-4 min-h-[450px] rounded-[3rem] border bg-card/10 dark:bg-card/20 backdrop-blur-sm shadow-2xl border-primary/5 text-card-foreground relative overflow-hidden group transition-colors duration-500">
       {/* Real Leaflet Map */}
       <div className="absolute inset-0">
         <MapComponent />
@@ -40,7 +40,7 @@ export const LiveTelemetry = () => {
           </div>
         </div>
         
-        <div className="mt-auto p-6 m-8 rounded-[2rem] bg-card/40 backdrop-blur-xl border border-border shadow-2xl max-w-sm pointer-events-auto">
+        <div className="mt-auto p-6 m-8 rounded-[2rem] bg-card/40 backdrop-blur-xl border border-primary/5 text-card-foreground shadow-2xl max-w-sm pointer-events-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">

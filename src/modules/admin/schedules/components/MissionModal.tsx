@@ -16,7 +16,7 @@ export const MissionModal = () => {
           Initialize Mission
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-border/50 rounded-[2.5rem] bg-background/80 backdrop-blur-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-primary/5 text-card-foreground/50 rounded-2xl bg-background/80 backdrop-blur-2xl shadow-2xl">
          <div className="p-10 bg-gradient-to-br from-primary/10 dark:from-primary/20 via-transparent to-transparent">
             <DialogHeader className="mb-8">
               <DialogTitle className="text-3xl font-black tracking-tighter text-foreground">Mission Programming</DialogTitle>
@@ -28,21 +28,21 @@ export const MissionModal = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Force Identifier (Bus)</Label>
-                  <Input placeholder="Select Unit..." className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                  <Input placeholder="Select Unit..." className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                 </div>
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Route Vector</Label>
-                  <Input placeholder="Select Route..." className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                  <Input placeholder="Select Route..." className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Deployment Time</Label>
-                    <Input type="time" className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                    <Input type="time" className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                  </div>
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Expected Recovery</Label>
-                    <Input type="time" className="h-12 bg-muted/50 border-border focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
+                    <Input type="time" className="h-12 bg-muted/50 border-primary/5 text-card-foreground focus-visible:ring-primary/30 rounded-xl font-bold text-foreground" />
                  </div>
               </div>
             </div>

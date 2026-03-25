@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { TrendingUp, BarChart3, Zap, Target, ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -15,12 +14,9 @@ export const KPIsGrid = ({ metrics }: KPIsGridProps) => {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {metrics.map((data, i) => (
-        <motion.div
+        <div
           key={i}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: i * 0.1 }}
-          className="p-6 rounded-[2rem] bg-card/40 backdrop-blur-md border border-border shadow-sm relative overflow-hidden group hover:shadow-xl hover:shadow-primary/5 transition-all"
+          className="p-6 rounded-2xl bg-card border border-primary/5 shadow-md relative overflow-hidden group hover:shadow-xl hover:shadow-primary/5 transition-all"
         >
           <div className="flex justify-between items-start mb-4">
              <div className="p-2.5 rounded-xl bg-primary/10 text-primary">
@@ -38,7 +34,7 @@ export const KPIsGrid = ({ metrics }: KPIsGridProps) => {
           <h2 className="text-2xl font-black tracking-tighter text-foreground group-hover:translate-x-1 transition-transform tabular-nums">
             {data.value}
           </h2>
-        </motion.div>
+        </div>
       ))}
     </div>
   );

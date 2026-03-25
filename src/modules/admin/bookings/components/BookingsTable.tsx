@@ -21,7 +21,7 @@ interface BookingsTableProps {
 
 export const BookingsTable = ({ bookings }: BookingsTableProps) => {
   return (
-    <div className="rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-sm overflow-hidden">
+    <div className="rounded-2xl border border-primary/5 text-card-foreground bg-card/40 backdrop-blur-md shadow-sm overflow-hidden">
       <Table>
         <TableHeader className="bg-primary/5 h-16">
           <TableRow className="hover:bg-transparent border-none font-black text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -36,7 +36,7 @@ export const BookingsTable = ({ bookings }: BookingsTableProps) => {
         </TableHeader>
         <TableBody>
           {bookings.map((booking) => (
-            <TableRow key={booking.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={booking.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
               <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{booking.id}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-2.5 text-foreground">
@@ -81,7 +81,7 @@ export const BookingsTable = ({ bookings }: BookingsTableProps) => {
                       <MoreVertical className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-[220px] p-2 rounded-2xl bg-background/80 backdrop-blur-2xl border-border/50 shadow-2xl">
+                  <DropdownMenuContent align="end" className="w-[220px] p-2 rounded-2xl bg-background/80 backdrop-blur-2xl border-primary/5 text-card-foreground/50 shadow-2xl">
                     <DropdownMenuLabel className="text-[10px] font-black uppercase tracking-widest px-2 py-1.5 opacity-60">Fiscal Oversight</DropdownMenuLabel>
                     <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs">
                       <Eye className="h-4 w-4 text-primary" />

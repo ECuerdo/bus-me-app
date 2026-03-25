@@ -13,7 +13,7 @@ interface ComplianceTableProps {
 
 export const ComplianceTable = ({ records }: ComplianceTableProps) => {
   return (
-    <div className="rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-sm overflow-hidden text-foreground">
+    <div className="rounded-2xl border border-primary/5 text-card-foreground bg-card/40 backdrop-blur-md shadow-sm overflow-hidden text-foreground">
       <Table>
         <TableHeader className="bg-primary/5 h-16">
           <TableRow className="hover:bg-transparent border-none font-black text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -27,7 +27,7 @@ export const ComplianceTable = ({ records }: ComplianceTableProps) => {
         </TableHeader>
         <TableBody>
           {records.map((record, i) => (
-            <TableRow key={i} className="group h-20 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
+            <TableRow key={i} className="group h-20 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
               <TableCell className="px-8 font-black text-sm text-foreground">{record.item}</TableCell>
               <TableCell>
                 <Badge variant="outline" className="font-black text-[10px] border-primary/20 text-primary">{record.unit}</Badge>

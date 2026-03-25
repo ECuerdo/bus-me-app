@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,10 +14,8 @@ interface MaintenanceTableProps {
 
 export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0 }} 
-      animate={{ opacity: 1 }} 
-      className="rounded-[2.5rem] border border-border/50 bg-card/40 backdrop-blur-md shadow-sm overflow-hidden text-center"
+    <div 
+      className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden text-center"
     >
       <Table>
         <TableHeader className="bg-primary/5 h-16">
@@ -34,7 +31,7 @@ export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
         </TableHeader>
         <TableBody>
           {logs.map((log) => (
-            <TableRow key={log.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border/10">
+            <TableRow key={log.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground/10">
                <TableCell className="px-8 font-black text-xs text-primary tabular-nums">{log.id}</TableCell>
                <TableCell className="font-bold text-sm tracking-tight text-foreground">{log.plate}</TableCell>
                <TableCell>
@@ -54,6 +51,6 @@ export const MaintenanceTable = ({ logs }: MaintenanceTableProps) => {
           ))}
         </TableBody>
       </Table>
-    </motion.div>
+    </div>
   );
 };

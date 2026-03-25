@@ -42,7 +42,7 @@ export default function BookingsModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-           <Button variant="outline" className="h-11 px-6 rounded-2xl gap-2 font-black transition-all hover:bg-primary/5 hover:border-primary/20 bg-muted/50 border-border text-foreground">
+           <Button variant="outline" className="h-11 px-6 rounded-2xl gap-2 font-black transition-all hover:bg-primary/5 hover:border-primary/20 bg-muted/50 border-primary/5 text-card-foreground text-foreground">
              <Download className="h-4 w-4" />
              Export Ledger
            </Button>
@@ -50,7 +50,7 @@ export default function BookingsModule() {
       </div>
 
       <Tabs defaultValue="sales" className="w-full">
-        <TabsList className="h-14 w-fit p-1 bg-muted/50 backdrop-blur-xl border border-border rounded-2xl mb-8">
+        <TabsList className="h-14 w-fit p-1 bg-muted/50 backdrop-blur-xl border border-primary/5 text-card-foreground rounded-2xl mb-8">
             <TabsTrigger value="sales" className="rounded-xl px-6 font-black text-[10px] uppercase tracking-widest data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all duration-300">
                <TrendingUp className="h-3.5 w-3.5 mr-2" />
                Sales Reports
@@ -68,7 +68,7 @@ export default function BookingsModule() {
          <TabsContent value="sales" className="space-y-8 mt-0 outline-none">
             <BookingStats stats={stats} />
             
-            <div className="p-12 rounded-[2.5rem] border border-dashed border-primary/20 bg-primary/5 text-center">
+            <div className="p-12 rounded-2xl border border-dashed border-primary/20 bg-primary/5 text-center">
                <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-6">
                   <TrendingUp className="h-10 w-10" />
                </div>
@@ -81,7 +81,7 @@ export default function BookingsModule() {
          </TabsContent>
 
          <TabsContent value="bookings" className="space-y-8 mt-0 outline-none">
-            <div className="flex items-center justify-between gap-4 p-5 rounded-[2rem] bg-card/40 backdrop-blur-md border border-border shadow-sm">
+            <div className="flex items-center justify-between gap-4 p-5 rounded-[2rem] bg-card/40 backdrop-blur-md border border-primary/5 text-card-foreground shadow-sm">
                <div className="flex-1 max-w-md relative">
                   <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <input 
@@ -91,7 +91,7 @@ export default function BookingsModule() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                </div>
-               <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest bg-card/40 border-border text-primary">
+               <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest bg-card/40 border-primary/5 text-card-foreground text-primary">
                   <Filter className="h-4 w-4" />
                   Audit Filter
                </Button>

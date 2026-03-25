@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { RevenuePoint } from "../types";
@@ -12,7 +11,7 @@ interface RevenueVelocityProps {
 
 export const RevenueVelocity = ({ timeline }: RevenueVelocityProps) => {
   return (
-    <div className="lg:col-span-4 p-8 rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-sm">
+    <div className="lg:col-span-4 p-8 rounded-2xl border border-primary/5 bg-card shadow-md">
       <div className="flex items-center justify-between mb-10">
         <div className="space-y-1">
           <h3 className="text-2xl font-black tracking-tighter text-foreground">Revenue Velocity</h3>
@@ -27,10 +26,8 @@ export const RevenueVelocity = ({ timeline }: RevenueVelocityProps) => {
         {timeline.map((item, i) => (
           <div key={i} className="flex-1 flex flex-col items-center gap-4 group/bar">
             <div className="w-full relative">
-              <motion.div 
-                initial={{ height: 0 }}
-                animate={{ height: `${item.value}%` }}
-                transition={{ delay: i * 0.1, duration: 1, ease: "circOut" }}
+              <div 
+                style={{ height: `${item.value}%` }}
                 className={cn("w-full rounded-t-2xl transition-all duration-500 bg-gradient-to-t from-primary/20 to-primary", 
                   item.value > 80 ? "shadow-[0_0_20px_rgba(var(--primary),0.3)] opacity-100" : "opacity-60 grayscale group-hover/bar:grayscale-0 group-hover/bar:opacity-100"
                 )}

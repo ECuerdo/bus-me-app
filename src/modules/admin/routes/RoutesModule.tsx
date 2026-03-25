@@ -12,6 +12,8 @@ import { useRoutes } from "./hooks/useRoutes";
 import { RouteModal } from "./components/RouteModal";
 import { RoutesTable } from "./components/RoutesTable";
 
+import { RouteBuilder } from "./components/RouteBuilder";
+
 export default function RoutesModule() {
   const { 
     searchTerm, 
@@ -32,11 +34,12 @@ export default function RoutesModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
+          <RouteBuilder />
           <RouteModal />
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 p-5 rounded-[2rem] bg-card/40 backdrop-blur-md border border-border shadow-sm">
+      <div className="flex items-center justify-between gap-4 p-5 rounded-[2rem] bg-card/40 backdrop-blur-md border border-primary/5 text-card-foreground shadow-sm">
         <div className="flex-1 max-w-md relative">
           <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input 
@@ -47,7 +50,7 @@ export default function RoutesModule() {
           />
         </div>
         <div className="flex items-center gap-2">
-           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-all bg-card/40 border-border text-primary">
+           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest hover:bg-primary/5 transition-all bg-card/40 border-primary/5 text-card-foreground text-primary">
              <Filter className="h-4 w-4" />
              Layer Filter
            </Button>

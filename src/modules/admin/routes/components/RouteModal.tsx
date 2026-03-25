@@ -16,7 +16,7 @@ export const RouteModal = () => {
           Define New Route
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-border/50 rounded-[2.5rem] bg-background/80 backdrop-blur-2xl shadow-2xl">
+      <DialogContent className="sm:max-w-[550px] p-0 overflow-hidden border-primary/5 text-card-foreground/50 rounded-2xl bg-background/80 backdrop-blur-2xl shadow-2xl">
          <div className="p-10 bg-gradient-to-br from-primary/10 dark:from-primary/20 via-transparent to-transparent">
             <DialogHeader className="mb-8">
               <DialogTitle className="text-3xl font-black tracking-tighter text-foreground">Route Specification</DialogTitle>
@@ -28,21 +28,21 @@ export const RouteModal = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Route Name</Label>
-                  <Input placeholder="Arterial Alpha" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
+                  <Input placeholder="Arterial Alpha" className="h-12 bg-muted/20 border-primary/5 text-card-foreground/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
                 </div>
                 <div className="space-y-2.5">
                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Distance (km)</Label>
-                  <Input placeholder="246" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
+                  <Input placeholder="246" className="h-12 bg-muted/20 border-primary/5 text-card-foreground/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Origin Node</Label>
-                    <Input placeholder="Manila" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
+                    <Input placeholder="Manila" className="h-12 bg-muted/20 border-primary/5 text-card-foreground/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
                  </div>
                  <div className="space-y-2.5">
                     <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Destination Node</Label>
-                    <Input placeholder="Baguio" className="h-12 bg-muted/20 border-border/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
+                    <Input placeholder="Baguio" className="h-12 bg-muted/20 border-primary/5 text-card-foreground/50 focus-visible:ring-primary/30 rounded-xl font-bold text-foreground transition-all focus:bg-background" />
                  </div>
               </div>
             </div>

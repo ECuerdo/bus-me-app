@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Users, Award, Mail, Phone, Edit, MoreVertical, ShieldCheck, Activity, Trash2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -35,11 +34,8 @@ const getStatusBadge = (status: string) => {
 
 export const StaffTable = ({ staff }: StaffTableProps) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8 }}
-      className="rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] overflow-hidden"
+    <div 
+      className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden"
     >
       <div className="overflow-x-auto">
         <Table className="min-w-[1100px]">
@@ -55,7 +51,7 @@ export const StaffTable = ({ staff }: StaffTableProps) => {
           </TableHeader>
           <TableBody>
             {staff.map((person) => (
-              <TableRow key={person.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border">
+              <TableRow key={person.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
                 <TableCell className="px-8 font-black text-sm text-primary tracking-tighter tabular-nums">{person.id}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
@@ -101,7 +97,7 @@ export const StaffTable = ({ staff }: StaffTableProps) => {
                             <MoreVertical className="h-4 w-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-2xl bg-background/80 backdrop-blur-2xl border-border/50 shadow-2xl" sideOffset={10}>
+                        <DropdownMenuContent align="end" className="w-[200px] p-2 rounded-2xl bg-background/80 backdrop-blur-2xl border-primary/5 text-card-foreground/50 shadow-2xl" sideOffset={10}>
                           <DropdownMenuLabel className="text-[10px] font-black uppercase tracking-widest px-2 py-1.5 opacity-60">Staff Ops</DropdownMenuLabel>
                           <DropdownMenuSeparator className="bg-primary/5" />
                           <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors">
@@ -126,6 +122,6 @@ export const StaffTable = ({ staff }: StaffTableProps) => {
           </TableBody>
         </Table>
        </div>
-    </motion.div>
+    </div>
   );
 };

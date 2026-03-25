@@ -58,7 +58,7 @@ const MapControls = ({ onZoomIn, onZoomOut }: { onZoomIn: () => void, onZoomOut:
          variant="outline" 
          size="icon" 
          onClick={onZoomIn}
-         className="h-10 w-10 rounded-xl bg-card/80 backdrop-blur-md border-border shadow-lg hover:bg-primary hover:text-primary-foreground transition-all"
+         className="h-10 w-10 rounded-xl bg-card/80 backdrop-blur-md border-primary/5 text-card-foreground shadow-lg hover:bg-primary hover:text-primary-foreground transition-all"
        >
          <Plus className="h-4 w-4" />
        </Button>
@@ -66,7 +66,7 @@ const MapControls = ({ onZoomIn, onZoomOut }: { onZoomIn: () => void, onZoomOut:
          variant="outline" 
          size="icon" 
          onClick={onZoomOut}
-         className="h-10 w-10 rounded-xl bg-card/80 backdrop-blur-md border-border shadow-lg hover:bg-primary hover:text-primary-foreground transition-all"
+         className="h-10 w-10 rounded-xl bg-card/80 backdrop-blur-md border-primary/5 text-card-foreground shadow-lg hover:bg-primary hover:text-primary-foreground transition-all"
        >
          <Minus className="h-4 w-4" />
        </Button>
@@ -82,7 +82,7 @@ const TerrainSwitcher = ({ current, onChange }: { current: string, onChange: (v:
   ];
 
   return (
-    <div className="absolute top-6 right-6 z-[400] flex bg-card/80 backdrop-blur-md border border-border rounded-2xl p-1.5 shadow-2xl">
+    <div className="absolute top-6 right-6 z-[400] flex bg-card/80 backdrop-blur-md border border-primary/5 text-card-foreground rounded-2xl p-1.5 shadow-2xl">
        {modes.map((m) => (
          <Button
            key={m.id}
@@ -229,7 +229,7 @@ export default function MapComponent() {
 
       <TerrainSwitcher current={terrain} onChange={setTerrain} />
 
-      <div className="absolute bottom-4 right-4 z-[400] px-4 py-2 bg-card/60 backdrop-blur-md border border-border rounded-xl shadow-xl pointer-events-none transition-opacity opacity-0 group-hover/map:opacity-100">
+      <div className="absolute bottom-4 right-4 z-[400] px-4 py-2 bg-card/60 backdrop-blur-md border border-primary/5 text-card-foreground rounded-xl shadow-xl pointer-events-none transition-opacity opacity-0 group-hover/map:opacity-100">
          <p className="text-[8px] font-black uppercase tracking-widest text-muted-foreground opacity-60">Cartographic Node: NCR-01</p>
       </div>
     </div>

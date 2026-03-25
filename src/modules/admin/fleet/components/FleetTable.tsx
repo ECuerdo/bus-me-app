@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Bus, MapPin, Settings2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -15,10 +14,8 @@ interface FleetTableProps {
 
 export const FleetTable = ({ buses }: FleetTableProps) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="rounded-[2.5rem] border border-border/50 bg-card/40 backdrop-blur-md shadow-sm overflow-hidden"
+    <div 
+      className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden"
     >
       <Table>
         <TableHeader className="bg-primary/5 h-16">
@@ -34,7 +31,7 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
         </TableHeader>
         <TableBody>
           {buses.map((bus) => (
-            <TableRow key={bus.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-border/10">
+            <TableRow key={bus.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground/10">
               <TableCell className="px-8 font-black text-sm text-primary tracking-tighter tabular-nums">{bus.id}</TableCell>
               <TableCell>
                 <div className="flex items-center gap-3">
@@ -81,6 +78,6 @@ export const FleetTable = ({ buses }: FleetTableProps) => {
           ))}
         </TableBody>
       </Table>
-    </motion.div>
+    </div>
   );
 };

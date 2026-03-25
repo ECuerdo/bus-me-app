@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import { Map } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -14,7 +13,7 @@ interface NetworkDistributionProps {
 export const NetworkDistribution = ({ distribution }: NetworkDistributionProps) => {
   return (
     <div className="lg:col-span-3 space-y-6">
-      <div className="p-8 rounded-[2.5rem] border border-border bg-card/40 backdrop-blur-md shadow-sm">
+      <div className="p-8 rounded-2xl border border-primary/5 bg-card shadow-md">
         <h3 className="text-xl font-black tracking-tighter mb-6 text-foreground">Network Distribution</h3>
         <div className="space-y-6">
           {distribution.map((item, i) => (
@@ -24,9 +23,8 @@ export const NetworkDistribution = ({ distribution }: NetworkDistributionProps) 
                 <span className="text-xs font-black tabular-nums text-foreground">{item.share}%</span>
               </div>
               <div className="h-2 w-full bg-muted/30 rounded-full overflow-hidden">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${item.share}%` }}
+                <div 
+                  style={{ width: `${item.share}%` }}
                   className={cn("h-full rounded-full transition-all duration-1000", item.color)} 
                 />
               </div>
@@ -35,7 +33,7 @@ export const NetworkDistribution = ({ distribution }: NetworkDistributionProps) 
         </div>
       </div>
 
-      <div className="p-8 rounded-[2.5rem] bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground shadow-2xl shadow-primary/20 relative overflow-hidden group">
+      <div className="p-8 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground shadow-2xl shadow-primary/20 relative overflow-hidden group">
         <Map className="absolute -right-8 -top-8 h-40 w-40 opacity-10 group-hover:scale-110 transition-transform duration-700" />
         <div className="relative z-10 space-y-4">
           <h3 className="text-xl font-black tracking-tighter">Daily Manifest</h3>

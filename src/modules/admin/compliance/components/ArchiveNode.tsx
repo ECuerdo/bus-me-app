@@ -15,11 +15,11 @@ export const ArchiveNode = () => {
       </div>
       <p className="text-sm font-medium text-muted-foreground leading-relaxed">Encrypted storage of historical compliance logs and legal documentation.</p>
       <div className="grid grid-cols-2 gap-4">
-        <div className="p-4 rounded-2xl bg-card/40 border border-border text-center">
+        <div className="p-4 rounded-2xl bg-card/40 border border-primary/5 text-card-foreground text-center">
           <p className="text-2xl font-black tracking-tighter leading-none text-foreground">1,240</p>
           <p className="text-[9px] font-black uppercase text-muted-foreground tracking-widest mt-1">Stored Assets</p>
         </div>
-        <div className="p-4 rounded-2xl bg-card/40 border border-border text-center">
+        <div className="p-4 rounded-2xl bg-card/40 border border-primary/5 text-card-foreground text-center">
           <p className="text-2xl font-black tracking-tighter leading-none text-foreground">100%</p>
           <p className="text-[9px] font-black uppercase text-muted-foreground tracking-widest mt-1">Uptime Rate</p>
         </div>

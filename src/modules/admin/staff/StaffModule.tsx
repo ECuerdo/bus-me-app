@@ -36,7 +36,7 @@ export default function StaffModule() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-4 p-5 rounded-[2.5rem] bg-card/40 backdrop-blur-md border border-border shadow-sm">
+      <div className="flex items-center justify-between gap-4 p-5 rounded-2xl bg-card/40 backdrop-blur-md border border-primary/5 text-card-foreground shadow-sm">
         <div className="flex-1 max-w-md relative">
           <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input 
@@ -47,7 +47,7 @@ export default function StaffModule() {
           />
         </div>
         <div className="flex items-center gap-2">
-           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest bg-card/40 border-border text-primary transition-all hover:bg-primary/5">
+           <Button variant="outline" size="sm" className="h-10 px-4 rounded-xl gap-2 font-black text-[10px] uppercase tracking-widest bg-card/40 border-primary/5 text-card-foreground text-primary transition-all hover:bg-primary/5">
              <UserCheck className="h-4 w-4" />
              Availability Filter
            </Button>
