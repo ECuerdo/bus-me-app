@@ -6,7 +6,12 @@ import {
   LogOut,
   Sparkles,
   ChevronsUpDown,
+  Sun,
+  Moon,
+  Monitor,
 } from "lucide-react"
+import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 
 import {
   Avatar,
@@ -33,6 +38,8 @@ export function NavUser({
     avatar: string
   }
 }) {
+  const { setTheme, theme } = useTheme()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -51,7 +58,7 @@ export function NavUser({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-56 rounded-2xl glass border-primary/10 shadow-2xl"
+        className="w-56 rounded-2xl border-primary/10 shadow-2xl bg-popover text-popover-foreground"
         align="end"
         sideOffset={8}
       >
@@ -70,12 +77,34 @@ export function NavUser({
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-primary/5" />
+        
         <DropdownMenuGroup className="p-1">
-          <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors">
-            <Sparkles className="h-4 w-4 text-primary" />
-            Vibrant Pro
+          <DropdownMenuLabel className="px-2 py-1.5 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
+            Interface Theme
+          </DropdownMenuLabel>
+          <DropdownMenuItem 
+            onClick={() => setTheme("light")}
+            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "light" && "bg-primary/5 text-primary")}
+          >
+            <Sun className="h-4 w-4" />
+            Light Mode
+          </DropdownMenuItem>
+          <DropdownMenuItem 
+            onClick={() => setTheme("dark")}
+            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "dark" && "bg-primary/5 text-primary")}
+          >
+            <Moon className="h-4 w-4" />
+            Dark Mode
+          </DropdownMenuItem>
+          <DropdownMenuItem 
+            onClick={() => setTheme("system")}
+            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "system" && "bg-primary/5 text-primary")}
+          >
+            <Monitor className="h-4 w-4" />
+            System Default
           </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator className="bg-primary/5" />
         <DropdownMenuGroup className="p-1">
           <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors">
