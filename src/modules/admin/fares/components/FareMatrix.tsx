@@ -1,19 +1,15 @@
 "use client";
 
 import React from "react";
-import { Edit2, Calculator, Percent } from "lucide-react";
+import { Edit2, Calculator, Percent, Loader2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-const mockRates = [
-  { id: "R-1", route: "Express Gamma", base: 50.00, perKm: 2.50, studentDesc: "20%", seniorDesc: "20%", status: "Active" },
-  { id: "R-2", route: "Metro Loop Z", base: 25.00, perKm: 1.75, studentDesc: "20%", seniorDesc: "20%", status: "Active" },
-  { id: "R-3", route: "Coastal Run Beta", base: 85.00, perKm: 3.00, studentDesc: "20%", seniorDesc: "20%", status: "Active" },
-  { id: "R-4", route: "Arterial Route C", base: 40.00, perKm: 2.00, studentDesc: "20%", seniorDesc: "20%", status: "Draft" },
-];
+import { useFares } from "../hooks/useFares";
 
 export const FareMatrix = () => {
+  const { rates, isLoading } = useFares();
+
   return (
     <div className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden">
       <div className="p-6 border-b border-primary/5 bg-muted/20 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -45,7 +41,24 @@ export const FareMatrix = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {mockRates.map((rate) => (
+          {isLoading && (
+            <TableRow>
+               <TableCell colSpan={7} className="h-24 text-center text-muted-foreground">
+                  <div className="flex items-center justify-center gap-2">
+                     <Loader2 className="h-5 w-5 animate-spin text-emerald-500" />
+                     Loading configured tariffs...
+                  </div>
+               </TableCell>
+            </TableRow>
+          )}
+          {!isLoading && rates.length === 0 && (
+             <TableRow>
+                <TableCell colSpan={7} className="h-24 text-center font-bold text-muted-foreground uppercase tracking-widest text-xs">
+                   No base tariffs configured in the database.
+                </TableCell>
+             </TableRow>
+          )}
+          {!isLoading && rates.map((rate) => (
             <TableRow key={rate.id} className="group h-24 hover:bg-emerald-500/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
               <TableCell className="px-8 font-black text-sm text-emerald-600 tracking-tighter tabular-nums">{rate.id}</TableCell>
               <TableCell>

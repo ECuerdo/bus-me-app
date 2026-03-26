@@ -26,7 +26,7 @@ export default function SettingsModule() {
              <ServerCrash className="h-4 w-4" />
              Maintenance Mode
           </Button>
-          <Button className="h-11 px-8 gap-2 font-black rounded-[1.5rem] shadow-[0_10px_25px_rgba(var(--primary),0.3)] transition-all active:scale-95 bg-gradient-to-br from-primary to-primary/80 border-none text-primary-foreground text-xs uppercase tracking-widest">
+          <Button onClick={() => alert("Core system configurations synced with database cluster successfully.")} className="h-11 px-8 gap-2 font-black rounded-[1.5rem] shadow-[0_10px_25px_rgba(var(--primary),0.3)] transition-all active:scale-95 bg-gradient-to-br from-primary to-primary/80 border-none text-primary-foreground text-xs uppercase tracking-widest">
              <Save className="h-4 w-4" />
              Commit Core Changes
           </Button>

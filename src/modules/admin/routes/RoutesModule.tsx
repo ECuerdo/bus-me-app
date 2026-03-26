@@ -18,7 +18,8 @@ export default function RoutesModule() {
   const { 
     searchTerm, 
     setSearchTerm, 
-    filteredRoutes 
+    filteredRoutes,
+    refreshRoutes
   } = useRoutes();
 
   return (
@@ -34,8 +35,7 @@ export default function RoutesModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <RouteBuilder />
-          <RouteModal />
+          <RouteBuilder onRouteAdded={refreshRoutes} />
         </div>
       </div>
 

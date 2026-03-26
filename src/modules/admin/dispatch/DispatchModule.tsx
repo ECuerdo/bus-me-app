@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Navigation, Settings2, ShieldAlert } from "lucide-react";
 import { TrafficMonitor } from "./components/TrafficMonitor";
 import { BroadcastSystem } from "./components/BroadcastSystem";
+import { MissionModal } from "../schedules/components/MissionModal";
 
 // React Leaflet must be imported dynamically without SSR
 const LiveMap = dynamic(() => import("./components/LiveMap"), { 
@@ -32,7 +33,7 @@ export default function DispatchModule() {
         </div>
         <div className="flex gap-3 mt-4 sm:mt-0">
           <Button variant="outline" className="rounded-xl font-bold text-xs"><Settings2 className="w-4 h-4 mr-2" /> Global Config</Button>
-          <Button className="rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-primary/20"><Navigation className="w-4 h-4 mr-2" /> Deploy Unit</Button>
+          <MissionModal />
         </div>
       </div>
 

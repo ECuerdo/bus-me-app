@@ -1,13 +1,69 @@
 "use client";
 
-import React from "react";
-import { Ticket, QrCode, CreditCard, UserPlus, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Ticket, QrCode, CreditCard, UserPlus, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const TicketTerminal = () => {
+  const [schedules, setSchedules] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    schedule_id: "",
+    fare_category: "regular",
+    seat_number: "",
+  });
+
+  useEffect(() => {
+    loadSchedules();
+  }, []);
+
+  const loadSchedules = async () => {
+    try {
+      const res = await fetch("/api/admin/schedules");
+      const data = await res.json();
+      if (res.ok) {
+        setSchedules(data.filter((s:any) => s.status === 'scheduled'));
+      }
+    } catch(err) {
+      console.error("Error loading schedules:", err);
+    }
+  };
+
+  const processTicket = async () => {
+    if (!formData.schedule_id) return alert("Select a schedule first.");
+    setLoading(true);
+
+    const ref = "BK-" + Math.floor(1000 + Math.random() * 9000); 
+    try {
+      const res = await fetch("/api/admin/tickets", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          transaction_ref: ref,
+          schedule_id: formData.schedule_id,
+          seat_number: formData.seat_number || "Open",
+          fare_category: formData.fare_category,
+          amount_paid: formData.fare_category === "regular" ? 50 : 40,
+          payment_method: "CASH",
+          payment_status: "completed"
+        })
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error);
+
+      alert(`Ticket Issued Successfully! Reference: ${ref}`);
+      setFormData({ schedule_id: "", fare_category: "regular", seat_number: "" });
+    } catch(err: any) {
+      alert("Error issuing ticket: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
        
@@ -22,21 +78,23 @@ export const TicketTerminal = () => {
              
              <div className="grid grid-cols-2 gap-6">
                 <div className="space-y-2.5">
-                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Select Route</Label>
-                   <Select>
+                   <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Select Schedule</Label>
+                   <Select value={formData.schedule_id} onValueChange={(v) => setFormData({...formData, schedule_id: v})}>
                      <SelectTrigger className="h-12 bg-muted/30 border-primary/5 text-card-foreground rounded-xl font-bold">
-                       <SelectValue placeholder="Select active route" />
+                       <SelectValue placeholder="Select active schedule" />
                      </SelectTrigger>
                      <SelectContent className="rounded-xl border-primary/5">
-                       <SelectItem value="arterial-c">Arterial Route C (₱40)</SelectItem>
-                       <SelectItem value="coastal-b">Coastal Run Beta (₱85)</SelectItem>
-                       <SelectItem value="express-g">Express Gamma (₱50)</SelectItem>
+                       {schedules.map(s => (
+                         <SelectItem key={s.id} value={s.id}>
+                           {s.routes?.name} @ {new Date(s.departure_time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                         </SelectItem>
+                       ))}
                      </SelectContent>
                    </Select>
                 </div>
                 <div className="space-y-2.5">
                    <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Tariff Category</Label>
-                   <Select>
+                   <Select value={formData.fare_category} onValueChange={(v) => setFormData({...formData, fare_category: v})}>
                      <SelectTrigger className="h-12 bg-muted/30 border-primary/5 text-card-foreground rounded-xl font-bold">
                        <SelectValue placeholder="Regular / Special" />
                      </SelectTrigger>
@@ -53,16 +111,22 @@ export const TicketTerminal = () => {
                 </div>
                 <div className="space-y-2.5">
                    <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Seat Preference (Optional)</Label>
-                   <Input placeholder="e.g. 12A" className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold shadow-inner" />
+                   <Input 
+                      placeholder="e.g. 12A" 
+                      className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold shadow-inner" 
+                      value={formData.seat_number}
+                      onChange={(e) => setFormData({...formData, seat_number: e.target.value})}
+                   />
                 </div>
              </div>
 
              <div className="pt-4 flex justify-end gap-3 border-t border-border/50">
-               <Button variant="outline" className="h-12 px-8 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary/5 text-foreground border-primary/20">
+               <Button onClick={() => setFormData({ schedule_id: "", fare_category: "regular", seat_number: "" })} variant="outline" className="h-12 px-8 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-primary/5 text-foreground border-primary/20">
                  Clear Terminals
                </Button>
-               <Button className="h-12 px-8 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-95 bg-primary text-primary-foreground gap-2">
-                 <CreditCard className="h-4 w-4" /> Process Payment
+               <Button onClick={processTicket} disabled={loading} className="h-12 px-8 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-95 bg-primary text-primary-foreground gap-2">
+                 {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CreditCard className="h-4 w-4" />} 
+                 {loading ? "Processing..." : "Process Payment"}
                </Button>
              </div>
           </div>

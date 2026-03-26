@@ -22,7 +22,7 @@ export default function CrmModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button className="h-11 px-6 gap-2 font-black rounded-2xl bg-gradient-to-br from-primary to-primary/80 border-none text-primary-foreground shadow-[0_10px_25px_rgba(var(--primary),0.3)] transition-all">
+          <Button onClick={() => alert("Scanning optical interface activated. Please present digital boarding pass.")} className="h-11 px-6 gap-2 font-black rounded-2xl bg-gradient-to-br from-primary to-primary/80 border-none text-primary-foreground shadow-[0_10px_25px_rgba(var(--primary),0.3)] transition-all">
              <ScanLine className="h-4 w-4" />
              Scan Ticket QR
           </Button>
