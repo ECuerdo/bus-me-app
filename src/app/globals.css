@@ -1,14 +1,165 @@
 @import "tailwindcss";
-@import "leaflet/dist/leaflet.css";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   DESIGN TOKENS (LIGHT)
+   - Slightly tinted app background for depth
+   - White cards/popovers for elevation
+   - Softer borders
+   - Blue primary (enterprise)
+   - Semantic status tokens (success/warn/info)
+   - Sidebar separated but still clean
+============================================================ */
+:root {
+  /* Core */
+  --background: 240 6% 98.5%;
+  --foreground: 240 10% 3.9%;
 
+  /* Surfaces */
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+
+  /* Primary (BLUE) */
+  --primary: 224 76% 48%;
+  --primary-foreground: 0 0% 100%;
+
+  /* Neutral system surfaces */
+  --secondary: 240 6% 96.5%;
+  --secondary-foreground: 240 6% 14%;
+
+  --muted: 240 6% 96.5%;
+  --muted-foreground: 240 4% 44%;
+
+  /* Accent (hover/active surface) */
+  --accent: 240 6% 96%;
+  --accent-foreground: 240 6% 14%;
+
+  /* Destructive */
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Inputs/borders (soft) */
+  --border: 240 6% 88%;
+  --input: 240 6% 90%;
+
+  /* Focus ring matches primary */
+  --ring: 224 76% 48%;
+
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* ===== Semantic tokens (LIGHT) ===== */
+  /* Success (Posted/Approved) */
+  --success: 142 71% 45%;
+  --success-foreground: 0 0% 100%;
+  --success-bg: 142 71% 96%;
+
+  /* Warning (Pending/For review) */
+  --warning: 38 92% 50%;
+  --warning-foreground: 20 14% 4%;
+  --warning-bg: 38 92% 95%;
+
+  /* Info (In progress/Processing) */
+  --info: 199 89% 48%;
+  --info-foreground: 0 0% 100%;
+  --info-bg: 199 89% 95%;
+
+  /* Sidebar */
+  --sidebar: 240 6% 97.5%;
+  --sidebar-foreground: 240 5% 26%;
+
+  --sidebar-primary: 224 76% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+
+  --sidebar-accent: 240 6% 95.5%;
+  --sidebar-accent-foreground: 240 6% 14%;
+
+  --sidebar-border: 240 6% 86%;
+  --sidebar-ring: 224 76% 48%;
+}
+
+/* ============================================================
+   DESIGN TOKENS (DARK)
+   - Deeper canvas
+   - Lifted cards
+   - Less “boxy” borders
+   - Blue primary (slightly brighter for visibility)
+   - Semantic tokens tuned for dark
+============================================================ */
+.dark {
+  /* Core */
+  --background: 240 10% 3.2%;
+  --foreground: 0 0% 98%;
+
+  /* Surfaces */
+  --card: 240 8% 6.5%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 240 8% 6.5%;
+  --popover-foreground: 0 0% 98%;
+
+  /* Primary (BLUE) – slightly brighter on dark */
+  --primary: 224 76% 56%;
+  --primary-foreground: 240 6% 12%;
+
+  /* Neutral system surfaces */
+  --secondary: 240 5% 12%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 240 5% 10.5%;
+  --muted-foreground: 240 6% 70%;
+
+  --accent: 240 5% 12.5%;
+  --accent-foreground: 0 0% 98%;
+
+  /* Destructive */
+  --destructive: 0 70% 38%;
+  --destructive-foreground: 0 0% 98%;
+
+  /* Borders/inputs (subtle) */
+  --border: 240 4% 14%;
+  --input: 240 4% 16%;
+
+  /* Ring matches primary */
+  --ring: 224 76% 56%;
+
+  /* ===== Semantic tokens (DARK) ===== */
+  --success: 142 70% 45%;
+  --success-foreground: 0 0% 100%;
+  --success-bg: 142 30% 12%;
+
+  --warning: 38 92% 55%;
+  --warning-foreground: 20 14% 4%;
+  --warning-bg: 38 30% 12%;
+
+  --info: 199 89% 55%;
+  --info-foreground: 0 0% 100%;
+  --info-bg: 199 30% 12%;
+
+  /* Sidebar */
+  --sidebar: 240 6% 7.5%;
+  --sidebar-foreground: 240 5% 92%;
+
+  --sidebar-primary: 224 76% 56%;
+  --sidebar-primary-foreground: 0 0% 100%;
+
+  --sidebar-accent: 240 5% 12.5%;
+  --sidebar-accent-foreground: 240 5% 92%;
+
+  --sidebar-border: 240 4% 14%;
+  --sidebar-ring: 224 76% 56%;
+}
+
+/* ============================================================
+   TAILWIND V4 TOKEN MAPPING
+   Enables: bg-background, text-foreground, border-border, etc.
+============================================================ */
+@theme inline {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -37,203 +188,152 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Semantic colors mapped for utilities (optional use) */
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
+  --color-success-bg: hsl(var(--success-bg));
 
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --color-warning: hsl(var(--warning));
+  --color-warning-foreground: hsl(var(--warning-foreground));
+  --color-warning-bg: hsl(var(--warning-bg));
 
-  @keyframes accordion-down {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-  @keyframes accordion-up {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
+  --color-info: hsl(var(--info));
+  --color-info-foreground: hsl(var(--info-foreground));
+  --color-info-bg: hsl(var(--info-bg));
+
+  --radius: var(--radius);
+
+  /* Fonts from layout.tsx */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+
+  /* Sidebar */
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
 }
 
+/* ============================================================
+   BASE STYLES
+   - Use Geist by default (do not force Arial)
+   - Consistent focus outlines + borders
+============================================================ */
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 262.1 83.3% 57.8%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 262.1 83.3% 57.8%;
-    --radius: 0.75rem;
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 263.4 70% 50.4%;
-  }
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    /* Geist is used via font-sans; keep fallbacks safe */
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans",
+      "Apple Color Emoji", "Segoe UI Emoji";
   }
-  html {
-    @apply font-sans;
+}
+
+/* ============================================================
+   DESIGN SYSTEM UTILITIES (HIGH ROI)
+   - Data-grid/table helpers
+   - Badge variants for status
+   - Density helpers (comfortable/compact)
+============================================================ */
+@layer components {
+
+  /* ----- Data table / grid styling helpers ----- */
+  .data-grid {
+    @apply w-full overflow-hidden rounded-lg border bg-card text-card-foreground;
+  }
+
+  .data-grid thead {
+    @apply bg-muted/60;
+  }
+
+  .data-grid th {
+    @apply px-4 py-3 text-left text-xs font-semibold text-muted-foreground;
+  }
+
+  .data-grid td {
+    @apply px-4 py-3 text-sm;
+  }
+
+  .data-grid tbody tr {
+    @apply border-t;
+  }
+
+  .data-grid tbody tr:hover {
+    @apply bg-accent/60;
+  }
+
+  /* Numeric alignment helper */
+  .td-num {
+    @apply text-right tabular-nums;
+  }
+
+  /* ----- Density: use on containers or tables ----- */
+  .density-comfortable .data-grid th,
+  .density-comfortable .data-grid td {
+    @apply py-3;
+  }
+
+  .density-compact .data-grid th,
+  .density-compact .data-grid td {
+    @apply py-2;
+  }
+
+  /* ----- Status badges (use with shadcn Badge component via className) ----- */
+  .badge-neutral {
+    @apply border bg-muted text-foreground;
+  }
+
+  .badge-success {
+    @apply border-transparent bg-[hsl(var(--success-bg))] text-[hsl(var(--success))];
+  }
+
+  .badge-warning {
+    @apply border-transparent bg-[hsl(var(--warning-bg))] text-[hsl(var(--warning))];
+  }
+
+  .badge-info {
+    @apply border-transparent bg-[hsl(var(--info-bg))] text-[hsl(var(--info))];
+  }
+
+  .badge-destructive {
+    @apply border-transparent bg-destructive/10 text-destructive;
+  }
+}
+
+/* ============================================================
+   SMOOTH THEME TRANSITION (only when toggling)
+   - Fixes your old "5000s" bug
+   - Premium but fast
+============================================================ */
+html.theme-switching,
+html.theme-switching * {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
+  transition-duration: 220ms;
+  transition-timing-function: ease;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  html.theme-switching,
+  html.theme-switching * {
+    transition: none !important;
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    @apply bg-background text-foreground;
   }
-}
-
-:root {
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-}
-
-.dark {
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-}
-
-@theme inline {
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --font-heading: var(--font-sans);
-  --font-sans: var(--font-sans);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }

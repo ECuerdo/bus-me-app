@@ -4,14 +4,16 @@ import {
   BadgeCheck,
   Bell,
   LogOut,
-  Sparkles,
   ChevronsUpDown,
   Sun,
   Moon,
   Monitor,
+  Loader2,
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 import {
   Avatar,
@@ -28,6 +30,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 
 export function NavUser({
   user,
@@ -39,6 +42,27 @@ export function NavUser({
   }
 }) {
   const { setTheme, theme } = useTheme()
+  const router = useRouter()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true)
+    try {
+      const res = await fetch("/api/logout", { method: "POST" })
+      if (res.ok) {
+        toast.success("Logged out successfully")
+        router.refresh()
+        router.push("/")
+      } else {
+        throw new Error("Logout failed")
+      }
+    } catch (error) {
+      toast.error("Failed to log out")
+      console.error(error)
+    } finally {
+      setIsLoggingOut(false)
+    }
+  }
 
   return (
     <DropdownMenu>
@@ -77,26 +101,26 @@ export function NavUser({
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-primary/5" />
-        
+
         <DropdownMenuGroup className="p-1">
           <DropdownMenuLabel className="px-2 py-1.5 text-[10px] font-black uppercase tracking-widest text-muted-foreground/60">
             Interface Theme
           </DropdownMenuLabel>
-          <DropdownMenuItem 
+          <DropdownMenuItem
             onClick={() => setTheme("light")}
             className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "light" && "bg-primary/5 text-primary")}
           >
             <Sun className="h-4 w-4" />
             Light Mode
           </DropdownMenuItem>
-          <DropdownMenuItem 
+          <DropdownMenuItem
             onClick={() => setTheme("dark")}
             className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "dark" && "bg-primary/5 text-primary")}
           >
             <Moon className="h-4 w-4" />
             Dark Mode
           </DropdownMenuItem>
-          <DropdownMenuItem 
+          <DropdownMenuItem
             onClick={() => setTheme("system")}
             className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "system" && "bg-primary/5 text-primary")}
           >
@@ -118,8 +142,12 @@ export function NavUser({
         </DropdownMenuGroup>
         <DropdownMenuSeparator className="bg-primary/5" />
         <div className="p-1">
-          <DropdownMenuItem className="cursor-pointer gap-2.5 rounded-xl h-10 font-black text-xs text-rose-500 focus:bg-rose-500/5 focus:text-rose-600 transition-colors uppercase tracking-widest">
-            <LogOut className="h-4 w-4" />
+          <DropdownMenuItem
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="cursor-pointer gap-2.5 rounded-xl h-10 font-black text-xs text-rose-500 focus:bg-rose-500/5 focus:text-rose-600 transition-colors uppercase tracking-widest"
+          >
+            {isLoggingOut ? <Loader2 className="h-4 w-4 animate-spin" /> : <LogOut className="h-4 w-4" />}
             Log out
           </DropdownMenuItem>
         </div>

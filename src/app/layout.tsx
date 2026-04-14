@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 const geistSans = Outfit({
   variable: "--font-geist-sans",
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -40,6 +42,7 @@ export default function RootLayout({
         >
           <TooltipProvider>
             {children}
+            <Toaster position="top-right" closeButton richColors />
           </TooltipProvider>
         </ThemeProvider>
       </body>
