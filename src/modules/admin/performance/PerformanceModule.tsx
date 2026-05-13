@@ -61,7 +61,7 @@ export default function PerformanceModule() {
            
            <div className="grid gap-4">
               {filteredDrivers.map((driver, i) => (
-                <DriverCard key={driver.id} driver={driver} index={i} />
+                <DriverCard key={driver.id} driver={driver} />
               ))}
            </div>
         </div>
