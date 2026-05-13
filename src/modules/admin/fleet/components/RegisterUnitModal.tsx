@@ -40,9 +40,9 @@ export const RegisterUnitModal = ({ onUnitAdded }: { onUnitAdded?: () => void })
       setOpen(false);
       setFormData({ plate_number: "", capacity: "", model: "" });
       if (onUnitAdded) onUnitAdded();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error registering unit:", err);
-      alert("Failed to register unit: " + err.message);
+      alert("Failed to register unit: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

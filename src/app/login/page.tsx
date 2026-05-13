@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -42,8 +43,8 @@ export default function LoginPage() {
 
       toast.success("Login successful! Redirecting...");
       router.push("/admin");
-    } catch (err: any) {
-      toast.error(err.message);
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
@@ -53,10 +54,12 @@ export default function LoginPage() {
     <div className="relative min-h-screen flex flex-col bg-background font-sans selection:bg-primary/30 selection:text-primary-foreground overflow-x-hidden">
       {/* Elite Premium Background: Animated Mesh Gradients */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <img 
+        <Image 
           src="/landing-bg.png" 
           alt="Logistics Background" 
-          className="w-full h-full object-cover opacity-40 scale-110"
+          fill
+          priority
+          className="object-cover opacity-40 scale-110"
         />
         <motion.div 
             animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}

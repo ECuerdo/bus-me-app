@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Activity, Clock, AlertTriangle, ShieldCheck } from "lucide-react";
 import { TransitSchedule, TransitRoute, ScheduleStat } from "../types";
 
@@ -18,7 +18,17 @@ export const useSchedules = () => {
       if (!res.ok) throw new Error("Failed to fetch schedules");
       const data = await res.json();
 
-      const formatted: TransitSchedule[] = data.map((s: any) => ({
+      interface RawSchedule {
+        id: string;
+        buses?: { plate_number: string; capacity: number };
+        routes?: { name: string };
+        departure_time: string;
+        estimated_arrival: string;
+        status: string;
+        drivers?: { first_name: string; last_name: string };
+      }
+
+      const formatted: TransitSchedule[] = data.map((s: RawSchedule) => ({
         id: "TRP-" + s.id.substring(0, 5).toUpperCase(),
         bus: s.buses?.plate_number || "Unassigned",
         route: s.routes?.name || "Unassigned",

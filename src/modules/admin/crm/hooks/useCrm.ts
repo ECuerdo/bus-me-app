@@ -25,7 +25,19 @@ export const useCrm = () => {
       if (!res.ok) throw new Error("Failed to fetch passengers");
       const data = await res.json();
 
-      const formatted: Passenger[] = data.map((p: any) => ({
+      interface RawPassenger {
+        id: string;
+        pnr_code?: string;
+        first_name: string;
+        last_name: string;
+        email?: string;
+        phone?: string;
+        loyalty_status: string;
+        rating: number | string;
+        total_rides: number;
+      }
+
+      const formatted: Passenger[] = data.map((p: RawPassenger) => ({
         id: p.pnr_code || "PNR-" + p.id.substring(0,4).toUpperCase(),
         name: `${p.first_name} ${p.last_name}`,
         email: p.email || "No Email",

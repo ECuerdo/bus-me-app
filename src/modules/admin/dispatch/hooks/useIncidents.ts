@@ -24,7 +24,16 @@ export const useIncidents = () => {
       if (!res.ok) throw new Error("Failed to fetch incidents");
       const data = await res.json();
 
-      const formatted: Incident[] = data.map((inc: any) => ({
+      interface RawIncident {
+        id: string;
+        routes?: { name: string };
+        delay_minutes: number;
+        description: string;
+        severity: string;
+        status: string;
+      }
+
+      const formatted: Incident[] = data.map((inc: RawIncident) => ({
         id: inc.id,
         route: inc.routes?.name || "Unknown Route",
         delay: `${inc.delay_minutes} mins`,

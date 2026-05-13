@@ -17,7 +17,16 @@ export const useRoutes = () => {
       if (!res.ok) throw new Error("Failed to fetch routes");
       const data = await res.json();
 
-      const formattedRoutes: TransitRoute[] = data.map((r: any) => ({
+      interface RawRoute {
+        code: string;
+        name: string;
+        origin: string;
+        destination: string;
+        distance_km: number;
+        status: string;
+      }
+
+      const formattedRoutes: TransitRoute[] = data.map((r: RawRoute) => ({
         id: r.code,
         name: r.name,
         origin: r.origin,

@@ -10,7 +10,6 @@ import {
   Settings,
   ShieldCheck,
   Star,
-  ChevronRight,
   LogOut,
   BarChart3,
   RadioTower,

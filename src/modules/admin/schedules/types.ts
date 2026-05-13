@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 export interface TransitSchedule {
   id: string;
   bus: string;
@@ -21,6 +23,6 @@ export interface TransitRoute {
 export interface ScheduleStat {
   label: string;
   val: string;
-  icon: any;
+  icon: ElementType;
   col: string;
 }

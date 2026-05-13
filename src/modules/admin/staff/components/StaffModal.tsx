@@ -42,9 +42,9 @@ export const StaffModal = ({ onStaffAdded }: { onStaffAdded?: () => void }) => {
       setOpen(false);
       setFormData({ first_name: "", last_name: "", license_number: "", contact_number: "" });
       if (onStaffAdded) onStaffAdded();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error registering driver:", err);
-      alert("Failed to register driver: " + err.message);
+      alert("Failed to register driver: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

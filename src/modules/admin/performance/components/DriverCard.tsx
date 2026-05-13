@@ -10,10 +10,9 @@ import { DriverPerformance } from "../types";
 
 interface DriverCardProps {
   driver: DriverPerformance;
-  index: number;
 }
 
-export const DriverCard = ({ driver, index }: DriverCardProps) => {
+export const DriverCard = ({ driver }: DriverCardProps) => {
   return (
     <div 
       className="p-6 rounded-2xl bg-card border border-primary/5 shadow-md flex items-center justify-between group hover:bg-accent/5 transition-all"

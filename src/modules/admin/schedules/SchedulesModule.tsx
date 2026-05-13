@@ -19,8 +19,6 @@ import { ScheduleGenerator } from "./components/ScheduleGenerator";
 
 export default function SchedulesModule() {
   const { 
-    searchTerm, 
-    setSearchTerm, 
     schedules, 
     routes, 
     stats,

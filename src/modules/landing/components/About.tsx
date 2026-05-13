@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Users, Target, Rocket } from "lucide-react";
 
@@ -52,10 +53,11 @@ export function About() {
              {/* Decorative Image/Graphic Placeholder */}
              <div className="aspect-square rounded-[4rem] overflow-hidden border border-white/10 relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent z-10" />
-                <img 
+                <Image 
                     src="/landing-bg.png" 
                     alt="About BUSME" 
-                    className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
+                    fill
+                    className="object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000"
                 />
                 <div className="absolute inset-0 flex items-center justify-center z-20">
                     <div className="p-8 bg-background/80 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-2xl text-center">

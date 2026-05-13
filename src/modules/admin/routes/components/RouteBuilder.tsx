@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, MapPin, Search, Navigation, Clock, Activity, GripVertical, Trash2, Route, Loader2 } from "lucide-react";
+import { Plus, MapPin, Navigation, Clock, GripVertical, Trash2, Route, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,9 +49,9 @@ export const RouteBuilder = ({ onRouteAdded }: { onRouteAdded?: () => void }) =>
       setOpen(false);
       setFormData({ code: "", name: "", origin: "", destination: "", distance_km: "" });
       if (onRouteAdded) onRouteAdded();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error creating route:", err);
-      alert("Failed to create route: " + err.message);
+      alert("Failed to create route: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

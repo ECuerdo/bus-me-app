@@ -3,7 +3,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Save, Banknote, History, ExternalLink } from "lucide-react";
+import { History } from "lucide-react";
 import { FareMatrix } from "./components/FareMatrix";
 import { FareModal } from "./components/FareModal";
 

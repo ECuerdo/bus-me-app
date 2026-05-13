@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Navbar } from "@/modules/landing/components/Navbar";
 import { Footer } from "@/modules/landing/components/Footer";
@@ -11,10 +12,12 @@ export default function ServicesPage() {
     <div className="relative min-h-screen flex flex-col bg-background font-sans selection:bg-primary/30 selection:text-primary-foreground overflow-x-hidden">
       {/* Elite Premium Background: Animated Mesh Gradients */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <img 
+        <Image 
           src="/services-bg.png" 
           alt="Services Background" 
-          className="w-full h-full object-cover opacity-40 scale-110"
+          fill
+          priority
+          className="object-cover opacity-40 scale-110"
         />
         <motion.div 
             animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}

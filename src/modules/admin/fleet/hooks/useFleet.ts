@@ -18,7 +18,16 @@ export const useFleet = () => {
       if (!res.ok) throw new Error("Failed to fetch buses");
       const data = await res.json();
       
-      const formattedBuses: Bus[] = data.map((b: any) => ({
+      interface RawBus {
+        id: string;
+        plate_number: string;
+        capacity: number;
+        status: string;
+        last_maintenance_date?: string;
+        model: string;
+      }
+
+      const formattedBuses: Bus[] = data.map((b: RawBus) => ({
         id: b.id.substring(0, 8), 
         plate: b.plate_number,
         type: b.capacity > 40 ? "Executive" : "Regular",

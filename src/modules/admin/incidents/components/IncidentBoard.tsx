@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { AlertCircle, Clock, CheckCircle2, MoreHorizontal, MapPin, Wrench, ShieldAlert } from "lucide-react";
+import { AlertCircle, Clock, CheckCircle2, MoreHorizontal, MapPin, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Incident = {

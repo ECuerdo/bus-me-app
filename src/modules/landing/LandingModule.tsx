@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Navbar } from "@/modules/landing/components/Navbar";
 import { Hero } from "@/modules/landing/components/Hero";
@@ -27,10 +28,12 @@ export default function LandingModule() {
       {/* Elite Premium Background: Animated Mesh Gradients */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         {/* The Base Background Image */}
-        <img 
+        <Image 
           src="/landing-bg.png" 
           alt="Logistics Background" 
-          className="w-full h-full object-cover opacity-40 scale-110"
+          fill
+          className="object-cover opacity-40 scale-110"
+          priority
         />
         
         {/* Moving Mesh Orbs */}

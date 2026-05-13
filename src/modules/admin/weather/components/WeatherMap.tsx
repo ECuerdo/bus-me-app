@@ -1,11 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Badge } from "@/components/ui/badge";
-import { Cloud, Sun, CloudRain, Wind, Thermometer } from "lucide-react";
+import { Thermometer } from "lucide-react";
 
 // Weather-themed icons
 const createWeatherIcon = (color: string, iconHtml: string) => L.divIcon({

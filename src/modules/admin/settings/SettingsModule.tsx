@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
-import { Settings, Save, ServerCrash } from "lucide-react";
+import { Save, ServerCrash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { UserAccessControl } from "./components/UserAccessControl";
 import { EmergencyProtocols } from "./components/EmergencyProtocols";
