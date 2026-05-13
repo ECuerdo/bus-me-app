@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Save, Banknote, History, ExternalLink } from "lucide-react";
 import { FareMatrix } from "./components/FareMatrix";
+import { FareModal } from "./components/FareModal";
 
 export default function FaresModule() {
   return (
@@ -24,10 +25,7 @@ export default function FaresModule() {
              <History className="h-4 w-4" />
              Pricing History
           </Button>
-          <Button className="h-11 px-6 gap-2 font-black rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_10px_25px_rgba(16,185,129,0.3)] transition-all">
-             <Save className="h-4 w-4" />
-             Commit Changes
-          </Button>
+          <FareModal />
         </div>
       </div>
 

@@ -1,16 +1,39 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Wrench, ShieldCheck, Calendar } from "lucide-react";
 import { Bus, MaintenanceLog } from "../types";
 
 export const useFleet = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [buses, setBuses] = useState<Bus[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const buses: Bus[] = [
-    { id: "B-101", plate: "ABC-1234", type: "Executive", status: "Active", route: "Manila - Baguio", condition: "Excellent", model: "Higer 2023", capacity: 45 },
-    { id: "B-102", plate: "XYZ-5678", type: "Regular", status: "Maintenance", route: "Pasay - Legazpi", condition: "Fair", model: "Yutong 2022", capacity: 49 },
-    { id: "B-103", plate: "LMN-9012", type: "Sleeper", status: "Active", route: "Manila - Vigan", condition: "Excellent", model: "Volvo B11R", capacity: 32 },
-    { id: "B-104", plate: "QWE-3456", type: "Executive", status: "Inactive", route: "None", condition: "Critical", model: "Higer 2021", capacity: 45 },
-  ];
+  useEffect(() => {
+    fetchBuses();
+  }, []);
+
+  const fetchBuses = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/admin/buses");
+      if (!res.ok) throw new Error("Failed to fetch buses");
+      const data = await res.json();
+      
+      const formattedBuses: Bus[] = data.map((b: any) => ({
+        id: b.id.substring(0, 8), 
+        plate: b.plate_number,
+        type: b.capacity > 40 ? "Executive" : "Regular",
+        status: b.status === "in_transit" ? "In Transit" : b.status === "out_of_service" ? "Out of Service" : b.status.charAt(0).toUpperCase() + b.status.slice(1),
+        route: "Unassigned", 
+        condition: b.last_maintenance_date ? "Fair" : "Excellent", 
+        model: b.model,
+        capacity: b.capacity
+      }));
+      setBuses(formattedBuses);
+    } catch (err) {
+      console.error("Error fetching buses:", err);
+    }
+    setIsLoading(false);
+  };
 
   const maintenanceLogs: MaintenanceLog[] = [
     { id: "M-501", plate: "ABC-1234", action: "Change Oil", schedule: "2024-03-25", status: "Pending", cert: "LTO/LTFRB Valid" },
@@ -23,11 +46,11 @@ export const useFleet = () => {
       bus.plate.toLowerCase().includes(searchTerm.toLowerCase()) || 
       bus.id.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [buses, searchTerm]);
 
   const stats = [
     { label: "Pending Tasks", val: "12", icon: Wrench, col: "text-amber-500" },
-    { label: "Valid Registrations", val: "42/48", icon: ShieldCheck, col: "text-emerald-500" },
+    { label: "Registered Units", val: `${buses.length}`, icon: ShieldCheck, col: "text-emerald-500" },
     { label: "Avg Service Cycle", val: "14 Days", icon: Calendar, col: "text-blue-500" },
   ];
 
@@ -36,6 +59,8 @@ export const useFleet = () => {
     setSearchTerm,
     filteredBuses,
     maintenanceLogs,
-    stats
+    stats,
+    isLoading,
+    refreshFleet: fetchBuses
   };
 };

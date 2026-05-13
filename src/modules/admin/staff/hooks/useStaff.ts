@@ -1,16 +1,37 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { StaffMember } from "../types";
 
 export const useStaff = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [staff, setStaff] = useState<StaffMember[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const staff: StaffMember[] = [
-    { id: "S-001", name: "Roberto Cruz", role: "Driver", status: "Active", email: "roberto.c@busme.pro", phone: "+63 912 345 6789", joined: "2023-05-15" },
-    { id: "S-002", name: "Antonio Luna", role: "Driver", status: "Active", email: "antonio.l@busme.pro", phone: "+63 912 345 6788", joined: "2023-06-10" },
-    { id: "S-003", name: "Maria Clara", role: "Conductor", status: "Active", email: "maria.c@busme.pro", phone: "+63 912 345 6787", joined: "2023-07-01" },
-    { id: "S-004", name: "Juan Dela Cruz", role: "Driver", status: "On-Leave", email: "juan.d@busme.pro", phone: "+63 912 345 6786", joined: "2022-11-20" },
-    { id: "S-005", name: "Miguel Lopez", role: "Maintenance", status: "Active", email: "miguel.l@busme.pro", phone: "+63 912 345 6785", joined: "2024-01-05" },
-  ];
+  useEffect(() => {
+    fetchStaff();
+  }, []);
+
+  const fetchStaff = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/admin/drivers");
+      if (!res.ok) throw new Error("Failed to fetch drivers");
+      const data = await res.json();
+      
+      const formattedStaff: StaffMember[] = data.map((d: any) => ({
+        id: "DRV-" + d.id.substring(0, 5).toUpperCase(),
+        name: `${d.first_name} ${d.last_name}`,
+        role: "Driver",
+        status: d.status === "on_leave" ? "On-Leave" : d.status.charAt(0).toUpperCase() + d.status.slice(1),
+        email: d.license_number, 
+        phone: d.contact_number,
+        joined: new Date(d.created_at).toISOString().split('T')[0]
+      }));
+      setStaff(formattedStaff);
+    } catch (err) {
+      console.error("Error fetching staff:", err);
+    }
+    setIsLoading(false);
+  };
 
   const filteredStaff = useMemo(() => {
     return staff.filter(s => 
@@ -23,6 +44,8 @@ export const useStaff = () => {
     searchTerm,
     setSearchTerm,
     filteredStaff,
-    staff
+    staff,
+    isLoading,
+    refreshStaff: fetchStaff
   };
 };

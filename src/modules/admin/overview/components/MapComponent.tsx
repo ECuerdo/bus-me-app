@@ -118,7 +118,7 @@ const ResizeMap = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       map.invalidateSize();
-    }, 100);
+    }, 500);
     return () => clearTimeout(timer);
   }, [map]);
   return null;

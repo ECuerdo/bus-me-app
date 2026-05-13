@@ -16,6 +16,7 @@ import {
   RadioTower,
   Siren,
   Banknote,
+  CloudSun,
 } from "lucide-react"
 
 import {
@@ -41,6 +42,7 @@ const navGroups = [
     items: [
       { icon: LayoutDashboard, label: "Live Overview", href: "/admin" },
       { icon: RadioTower, label: "Live Dispatch", href: "/admin/dispatch" },
+      { icon: CloudSun, label: "Live Weather", href: "/admin/weather" },
     ],
   },
   {
@@ -81,8 +83,34 @@ const navGroups = [
   },
 ]
 
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+import { Loader2 } from "lucide-react"
+
 export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
+  const router = useRouter()
+  const [isLoggingOut, setIsLoggingOut] = useState(false)
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true)
+    try {
+      const res = await fetch("/api/logout", { method: "POST" })
+      if (res.ok) {
+        toast.success("Session terminated")
+        router.refresh()
+        router.push("/")
+      } else {
+        throw new Error("Logout failed")
+      }
+    } catch (error) {
+      toast.error("Failed to terminate session")
+      console.error(error)
+    } finally {
+      setIsLoggingOut(false)
+    }
+  }
 
   return (
     <Sidebar collapsible="icon" variant="sidebar" className="border-r border-border/50 bg-card/60 backdrop-blur-2xl" {...props}>
@@ -97,7 +125,7 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
           </div>
         </div>
       </SidebarHeader>
-      
+
       <SidebarContent className="gap-0 py-2">
         {navGroups.map((group, idx) => (
           <SidebarGroup key={group.label} className={cn(idx > 0 && "mt-2")}>
@@ -114,8 +142,8 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
                       tooltip={item.label}
                       className={cn(
                         "h-10 rounded-xl transition-all duration-500",
-                        pathname === item.href 
-                          ? "bg-gradient-to-br from-primary/15 to-primary/5 text-primary shadow-sm border border-primary/20" 
+                        pathname === item.href
+                          ? "bg-gradient-to-br from-primary/15 to-primary/5 text-primary shadow-sm border border-primary/20"
                           : "hover:bg-primary/10 hover:text-primary"
                       )}
                     >
@@ -135,33 +163,37 @@ export function AdminSidebar({ ...props }: React.ComponentProps<typeof Sidebar>)
         ))}
 
         <SidebarGroup className="mt-auto">
-           <SidebarGroupLabel className="px-4 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-2 group-data-[collapsible=icon]:hidden">
+          <SidebarGroupLabel className="px-4 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] mb-2 group-data-[collapsible=icon]:hidden">
             System
           </SidebarGroupLabel>
           <SidebarMenu>
             <SidebarMenuItem>
-                <SidebarMenuButton
-                  asChild
-                  isActive={pathname === "/admin/settings"}
-                  tooltip="Settings"
-                  className={cn(
-                    "h-10 rounded-xl transition-all duration-500",
-                    pathname === "/admin/settings" 
-                      ? "bg-gradient-to-br from-primary/15 to-primary/5 text-primary border border-primary/20" 
-                      : "hover:bg-primary/10 hover:text-primary"
-                  )}
-                >
-                  <Link href="/admin/settings" className={cn("flex items-center", "group-data-[collapsible=icon]:justify-center", "gap-3 group-data-[collapsible=icon]:gap-0")}>
-                    <Settings className={cn("size-4 shrink-0", pathname === "/admin/settings" ? "text-primary" : "text-muted-foreground")} />
-                    <span className="font-bold tracking-tight text-xs group-data-[collapsible=icon]:hidden whitespace-nowrap">Global Config</span>
-                  </Link>
-                </SidebarMenuButton>
+              <SidebarMenuButton
+                asChild
+                isActive={pathname === "/admin/settings"}
+                tooltip="Settings"
+                className={cn(
+                  "h-10 rounded-xl transition-all duration-500",
+                  pathname === "/admin/settings"
+                    ? "bg-gradient-to-br from-primary/15 to-primary/5 text-primary border border-primary/20"
+                    : "hover:bg-primary/10 hover:text-primary"
+                )}
+              >
+                <Link href="/admin/settings" className={cn("flex items-center", "group-data-[collapsible=icon]:justify-center", "gap-3 group-data-[collapsible=icon]:gap-0")}>
+                  <Settings className={cn("size-4 shrink-0", pathname === "/admin/settings" ? "text-primary" : "text-muted-foreground")} />
+                  <span className="font-bold tracking-tight text-xs group-data-[collapsible=icon]:hidden whitespace-nowrap">Global Config</span>
+                </Link>
+              </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-               <SidebarMenuButton className="h-10 rounded-xl group text-rose-500 hover:bg-rose-500/10 hover:text-rose-600 transition-all group-data-[collapsible=icon]:justify-center">
-                  <LogOut className="size-4 shrink-0 group-hover:-translate-x-0.5 transition-transform" />
-                  <span className="font-black text-[10px] uppercase tracking-widest group-data-[collapsible=icon]:hidden whitespace-nowrap">Terminate Session</span>
-               </SidebarMenuButton>
+              <SidebarMenuButton
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="h-10 rounded-xl group text-rose-500 hover:bg-rose-500/10 hover:text-rose-600 transition-all group-data-[collapsible=icon]:justify-center"
+              >
+                {isLoggingOut ? <Loader2 className="size-4 shrink-0 animate-spin" /> : <LogOut className="size-4 shrink-0 group-hover:-translate-x-0.5 transition-transform" />}
+                <span className="font-black text-[10px] uppercase tracking-widest group-data-[collapsible=icon]:hidden whitespace-nowrap">Terminate Session</span>
+              </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>

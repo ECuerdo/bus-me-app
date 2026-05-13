@@ -16,7 +16,8 @@ export default function StaffModule() {
   const { 
     searchTerm, 
     setSearchTerm, 
-    filteredStaff 
+    filteredStaff,
+    refreshStaff
   } = useStaff();
 
   return (
@@ -32,7 +33,7 @@ export default function StaffModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <StaffModal />
+          <StaffModal onStaffAdded={refreshStaff} />
         </div>
       </div>
 

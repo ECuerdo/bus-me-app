@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus, MapPin, Search, Navigation, Clock, Activity, GripVertical, Trash2, Route } from "lucide-react";
+import { Plus, MapPin, Search, Navigation, Clock, Activity, GripVertical, Trash2, Route, Loader2 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,13 +11,54 @@ import { Badge } from "@/components/ui/badge";
 const mockStops = [
   { id: 1, name: "Main Terminal A", distance: "0 km", time: "0 mins" },
   { id: 2, name: "City Center Hub", distance: "12 km", time: "25 mins" },
-  { id: 3, name: "Northridge Mall", distance: "28 km", time: "45 mins" },
-  { id: 4, name: "Provincial Border", distance: "52 km", time: "90 mins" },
 ];
 
-export const RouteBuilder = () => {
+export const RouteBuilder = ({ onRouteAdded }: { onRouteAdded?: () => void }) => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    code: "",
+    name: "",
+    origin: "",
+    destination: "",
+    distance_km: ""
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.code || !formData.name || !formData.origin || !formData.destination || !formData.distance_km) return;
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/routes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: formData.code.toUpperCase(),
+          name: formData.name,
+          origin: formData.origin,
+          destination: formData.destination,
+          distance_km: parseFloat(formData.distance_km),
+          status: "active",
+        })
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error);
+
+      setOpen(false);
+      setFormData({ code: "", name: "", origin: "", destination: "", distance_km: "" });
+      if (onRouteAdded) onRouteAdded();
+    } catch (err: any) {
+      console.error("Error creating route:", err);
+      alert("Failed to create route: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="h-11 px-6 gap-2 font-black rounded-2xl shadow-[0_10px_25px_rgba(var(--primary),0.3)] transition-all active:scale-95 bg-gradient-to-br from-primary to-primary/80 border-none text-primary-foreground">
           <Route className="h-5 w-5" />
@@ -25,6 +66,7 @@ export const RouteBuilder = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[700px] p-0 overflow-hidden border-primary/5 rounded-2xl bg-background/95 backdrop-blur-3xl shadow-2xl">
+         <form onSubmit={handleSubmit}>
          <div className="p-8 pb-4 bg-gradient-to-br from-primary/10 via-transparent to-transparent">
           <DialogHeader className="mb-6">
             <DialogTitle className="text-2xl font-black tracking-tighter text-foreground flex items-center gap-3">
@@ -35,32 +77,74 @@ export const RouteBuilder = () => {
             </DialogDescription>
           </DialogHeader>
           
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="space-y-2">
-               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Route Designation</Label>
-               <Input placeholder="e.g. Express Loop 4B" className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner" />
+               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Route Code</Label>
+               <Input 
+                 placeholder="e.g. R-1" 
+                 value={formData.code}
+                 onChange={(e) => setFormData({...formData, code: e.target.value})}
+                 className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner uppercase" 
+                 required
+               />
             </div>
             <div className="space-y-2">
-               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Service Class</Label>
-               <div className="flex bg-muted/30 h-12 rounded-xl p-1 shadow-inner border border-primary/5">
-                  <div className="flex-1 bg-background rounded-lg flex items-center justify-center font-black text-xs text-primary shadow-sm border border-primary/10 uppercase tracking-widest cursor-pointer">Express</div>
-                  <div className="flex-1 rounded-lg flex items-center justify-center font-bold text-xs text-muted-foreground uppercase tracking-widest cursor-pointer hover:bg-background/50 transition-colors">Standard</div>
-               </div>
+               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Route Designation (Name)</Label>
+               <Input 
+                 placeholder="e.g. Express Gamma" 
+                 value={formData.name}
+                 onChange={(e) => setFormData({...formData, name: e.target.value})}
+                 className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner" 
+                 required
+               />
             </div>
+          </div>
+          <div className="grid grid-cols-3 gap-4 mb-2">
+             <div className="space-y-2">
+               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Origin Node</Label>
+               <Input 
+                 placeholder="e.g. Manila" 
+                 value={formData.origin}
+                 onChange={(e) => setFormData({...formData, origin: e.target.value})}
+                 className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner" 
+                 required
+               />
+             </div>
+             <div className="space-y-2">
+               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Destination Node</Label>
+               <Input 
+                 placeholder="e.g. Baguio" 
+                 value={formData.destination}
+                 onChange={(e) => setFormData({...formData, destination: e.target.value})}
+                 className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner" 
+                 required
+               />
+             </div>
+             <div className="space-y-2">
+               <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground">Distance (km)</Label>
+               <Input 
+                 type="number"
+                 placeholder="e.g. 246" 
+                 value={formData.distance_km}
+                 onChange={(e) => setFormData({...formData, distance_km: e.target.value})}
+                 className="h-12 bg-muted/30 border-primary/5 focus-visible:ring-primary/30 rounded-xl font-bold transition-all focus:bg-background shadow-inner" 
+                 required
+               />
+             </div>
           </div>
          </div>
 
          <div className="px-8 pb-8 space-y-4">
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-2 mt-4">
                 <h4 className="font-black text-sm uppercase tracking-widest text-foreground flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-primary" /> Waypoint Sequence
+                  <MapPin className="h-4 w-4 text-primary" /> Waypoint Sequence (BETA)
                 </h4>
-                <Button variant="outline" size="sm" className="h-8 rounded-lg font-bold text-[10px] uppercase tracking-widest gap-1 border-primary/20 text-primary shadow-sm hover:bg-primary/5">
+                <Button type="button" variant="outline" size="sm" className="h-8 rounded-lg font-bold text-[10px] uppercase tracking-widest gap-1 border-primary/20 text-primary shadow-sm hover:bg-primary/5">
                   <Plus className="h-3 w-3" /> Add Stop
                 </Button>
             </div>
 
-            <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-3 max-h-[150px] overflow-y-auto pr-2 custom-scrollbar opacity-50 pointer-events-none">
                 {mockStops.map((stop, idx) => (
                    <div key={stop.id} className="group relative flex items-center gap-4 bg-muted/20 border border-primary/5 p-3 rounded-2xl hover:bg-muted/40 hover:border-primary/20 transition-all">
                       <div className="cursor-grab active:cursor-grabbing text-muted-foreground hover:text-primary transition-colors p-2 -ml-2">
@@ -85,7 +169,7 @@ export const RouteBuilder = () => {
                          </div>
                       </div>
 
-                      <Button variant="ghost" size="icon" className="h-8 w-8 text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-500/10 hover:text-rose-600 rounded-lg">
+                      <Button type="button" variant="ghost" size="icon" className="h-8 w-8 text-rose-500 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-rose-500/10 hover:text-rose-600 rounded-lg">
                          <Trash2 className="h-4 w-4" />
                       </Button>
                    </div>
@@ -93,9 +177,13 @@ export const RouteBuilder = () => {
             </div>
             
             <DialogFooter className="pt-6 border-t border-border mt-4">
-              <Button type="submit" className="h-12 w-full font-black text-xs uppercase tracking-widest rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20 bg-primary text-primary-foreground border-none">Publish Route Infrastructure</Button>
+              <Button disabled={loading} type="submit" className="h-12 w-full font-black text-xs uppercase tracking-widest rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20 bg-primary text-primary-foreground border-none">
+                {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                {loading ? "Publishing..." : "Publish Route Infrastructure"}
+              </Button>
             </DialogFooter>
          </div>
+         </form>
       </DialogContent>
     </Dialog>
   );

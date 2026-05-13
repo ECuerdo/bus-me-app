@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
-const geistSans = Geist({
+const geistSans = Outfit({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = Outfit({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -40,6 +42,7 @@ export default function RootLayout({
         >
           <TooltipProvider>
             {children}
+            <Toaster position="top-right" closeButton richColors />
           </TooltipProvider>
         </ThemeProvider>
       </body>

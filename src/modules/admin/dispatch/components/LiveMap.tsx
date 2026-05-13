@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, ZoomControl } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, ZoomControl, useMap } from "react-leaflet";
 import L from "leaflet";
 import { Badge } from "@/components/ui/badge";
 
@@ -48,6 +48,17 @@ const mockRouteLine = [
   [14.5547, 121.0244] as [number, number],
 ];
 
+const ResizeMap = () => {
+  const map = useMap();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      map.invalidateSize();
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [map]);
+  return null;
+};
+
 export default function LiveMap() {
   return (
     <div className="h-[70vh] w-full bg-card relative">
@@ -57,6 +68,7 @@ export default function LiveMap() {
         style={{ height: "100%", width: "100%", zIndex: 10, borderRadius: "2rem" }}
         zoomControl={false}
       >
+        <ResizeMap />
         <ZoomControl position="bottomright" />
         
         <TileLayer

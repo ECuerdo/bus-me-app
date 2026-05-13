@@ -5,16 +5,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Star, Mail, Phone, ExternalLink } from "lucide-react";
-
-const mockPassengers = [
-  { id: "PNR-1001", name: "Gabriel Reyes", email: "gabriel.r@email.com", phone: "+63 917 123 4567", status: "Premium", rating: 4.9, rides: 142 },
-  { id: "PNR-1002", name: "Sofia Mercado", email: "smstc@email.ph", phone: "+63 918 987 6543", status: "Standard", rating: 4.5, rides: 28 },
-  { id: "PNR-1003", name: "Miguel Santos", email: "miggy@busme.ph", phone: "+63 920 555 1212", status: "Corporate", rating: 5.0, rides: 304 },
-  { id: "PNR-1004", name: "Isabella Cruz", email: "isac@web.com", phone: "+63 919 444 8888", status: "Standard", rating: 3.2, rides: 12 },
-];
+import { Star, Mail, Phone, ExternalLink, Loader2 } from "lucide-react";
+import { useCrm } from "../hooks/useCrm";
 
 export const PassengerDirectory = () => {
+  const { passengers, isLoading } = useCrm();
+
   return (
     <div className="rounded-2xl border border-primary/5 bg-card shadow-md overflow-hidden">
       <div className="overflow-x-auto">
@@ -30,7 +26,24 @@ export const PassengerDirectory = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {mockPassengers.map((user) => (
+            {isLoading && (
+              <TableRow>
+                 <TableCell colSpan={6} className="h-24 text-center text-muted-foreground">
+                    <div className="flex items-center justify-center gap-2">
+                       <Loader2 className="h-5 w-5 animate-spin text-primary" />
+                       Loading passenger directory...
+                    </div>
+                 </TableCell>
+              </TableRow>
+            )}
+            {!isLoading && passengers.length === 0 && (
+               <TableRow>
+                  <TableCell colSpan={6} className="h-24 text-center font-bold text-muted-foreground uppercase tracking-widest text-xs">
+                     No passenger profiles found.
+                  </TableCell>
+               </TableRow>
+            )}
+            {!isLoading && passengers.map((user) => (
               <TableRow key={user.id} className="group h-24 hover:bg-primary/5 transition-colors border-b last:border-none border-primary/5 text-card-foreground">
                  <TableCell className="px-8 font-black text-sm text-primary tracking-tighter tabular-nums">{user.id}</TableCell>
                  <TableCell>

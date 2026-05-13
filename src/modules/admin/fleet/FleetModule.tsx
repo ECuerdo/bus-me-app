@@ -24,7 +24,8 @@ export default function FleetModule() {
     setSearchTerm, 
     filteredBuses, 
     maintenanceLogs, 
-    stats 
+    stats,
+    refreshFleet
   } = useFleet();
 
   return (
@@ -40,7 +41,7 @@ export default function FleetModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <RegisterUnitModal />
+          <RegisterUnitModal onUnitAdded={refreshFleet} />
         </div>
       </div>
 

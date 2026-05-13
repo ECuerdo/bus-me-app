@@ -1,14 +1,37 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { TransitRoute } from "../types";
 
 export const useRoutes = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [routes, setRoutes] = useState<TransitRoute[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const routes: TransitRoute[] = [
-    { id: "R-001", name: "Arterial Alpha", origin: "Manila", destination: "Baguio", distance: "246km", stops: 4, status: 'Active' },
-    { id: "R-002", name: "Coastal Beta", origin: "Davao", destination: "Cebu", distance: "820km", stops: 2, status: 'Active' },
-    { id: "R-003", name: "Island Gamma", origin: "Iloilo", destination: "Bacolod", distance: "45km", stops: 1, status: 'Inactive' },
-  ];
+  useEffect(() => {
+    fetchRoutes();
+  }, []);
+
+  const fetchRoutes = async () => {
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/admin/routes");
+      if (!res.ok) throw new Error("Failed to fetch routes");
+      const data = await res.json();
+
+      const formattedRoutes: TransitRoute[] = data.map((r: any) => ({
+        id: r.code,
+        name: r.name,
+        origin: r.origin,
+        destination: r.destination,
+        distance: r.distance_km + "km",
+        stops: 4,
+        status: r.status === "active" ? "Active" : r.status === "draft" ? "Under Review" : "Inactive"
+      }));
+      setRoutes(formattedRoutes);
+    } catch(err) {
+      console.error("Error fetching routes:", err);
+    }
+    setIsLoading(false);
+  };
 
   const filteredRoutes = useMemo(() => {
     return routes.filter(route => 
@@ -16,12 +39,14 @@ export const useRoutes = () => {
       route.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
       route.destination.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [searchTerm, routes]);
 
   return {
     searchTerm,
     setSearchTerm,
     filteredRoutes,
-    routes
+    routes,
+    isLoading,
+    refreshRoutes: fetchRoutes
   };
 };

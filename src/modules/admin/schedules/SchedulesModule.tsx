@@ -23,7 +23,8 @@ export default function SchedulesModule() {
     setSearchTerm, 
     schedules, 
     routes, 
-    stats 
+    stats,
+    refreshSchedules
   } = useSchedules();
 
   return (
@@ -40,11 +41,11 @@ export default function SchedulesModule() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="h-11 px-6 gap-2 font-black rounded-2xl border-rose-500/20 text-rose-500 hover:bg-rose-500/5 transition-all">
+          <Button onClick={() => alert("Emergency override protocols engaged for standby assets.")} variant="outline" className="h-11 px-6 gap-2 font-black rounded-2xl border-rose-500/20 text-rose-500 hover:bg-rose-500/5 transition-all">
              <AlertTriangle className="h-4 w-4" />
              Emergency Dispatch
           </Button>
-          <MissionModal />
+          <MissionModal onScheduleAdded={refreshSchedules} />
         </div>
       </div>
 
