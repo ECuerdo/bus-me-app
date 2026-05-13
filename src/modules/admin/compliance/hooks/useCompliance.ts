@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { ShieldCheck, ShieldAlert, History } from "lucide-react";
 import { ComplianceRecord, IncidentLog, ComplianceStat } from "../types";
 

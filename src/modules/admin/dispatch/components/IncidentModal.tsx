@@ -1,17 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Plus, Loader2, ShieldAlert } from "lucide-react";
+import { Loader2, ShieldAlert } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+interface Route {
+  id: string;
+  name: string;
+  status: string;
+}
+
 export const IncidentModal = ({ onIncidentAdded }: { onIncidentAdded?: () => void }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [routes, setRoutes] = useState<any[]>([]);
+  const [routes, setRoutes] = useState<Route[]>([]);
 
   const [formData, setFormData] = useState({
     route_id: "",
@@ -30,7 +36,7 @@ export const IncidentModal = ({ onIncidentAdded }: { onIncidentAdded?: () => voi
     try {
       const res = await fetch("/api/admin/routes");
       const data = await res.json();
-      if (res.ok) setRoutes(data.filter((r: any) => r.status === "active"));
+      if (res.ok) setRoutes(data.filter((r: Route) => r.status === "active"));
     } catch(err) {
       console.error(err);
     }
@@ -60,8 +66,8 @@ export const IncidentModal = ({ onIncidentAdded }: { onIncidentAdded?: () => voi
       setOpen(false);
       setFormData({ route_id: "", severity: "low", delay_minutes: "15", description: "" });
       if (onIncidentAdded) onIncidentAdded();
-    } catch(err: any) {
-      alert("Failed to report incident: " + err.message);
+    } catch(err: unknown) {
+      alert("Failed to report incident: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

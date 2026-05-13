@@ -1,14 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Ticket, QrCode, CreditCard, UserPlus, CheckCircle2, Loader2 } from "lucide-react";
+import { Ticket, QrCode, CreditCard, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+interface Schedule {
+  id: string;
+  status: string;
+  departure_time: string;
+  routes?: {
+    name: string;
+  };
+}
+
 export const TicketTerminal = () => {
-  const [schedules, setSchedules] = useState<any[]>([]);
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -26,7 +35,7 @@ export const TicketTerminal = () => {
       const res = await fetch("/api/admin/schedules");
       const data = await res.json();
       if (res.ok) {
-        setSchedules(data.filter((s:any) => s.status === 'scheduled'));
+        setSchedules(data.filter((s: Schedule) => s.status === 'scheduled'));
       }
     } catch(err) {
       console.error("Error loading schedules:", err);
@@ -57,8 +66,8 @@ export const TicketTerminal = () => {
 
       alert(`Ticket Issued Successfully! Reference: ${ref}`);
       setFormData({ schedule_id: "", fare_category: "regular", seat_number: "" });
-    } catch(err: any) {
-      alert("Error issuing ticket: " + err.message);
+    } catch(err: unknown) {
+      alert("Error issuing ticket: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 export interface ComplianceRecord {
   item: string;
   unit: string;
@@ -18,6 +20,6 @@ export interface IncidentLog {
 export interface ComplianceStat {
   label: string;
   val: string;
-  icon: any;
+  icon: ElementType;
   col: string;
 }

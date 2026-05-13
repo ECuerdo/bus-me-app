@@ -1,19 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Plus, Loader2, Save } from "lucide-react";
+import { Loader2, Save } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { createClient } from "@/utils/supabase/client";
+
+interface Route {
+  id: string;
+  name: string;
+  status: string;
+}
 
 export const FareModal = ({ onFareAdded }: { onFareAdded?: () => void }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [routes, setRoutes] = useState<any[]>([]);
-  const supabase = createClient();
+  const [routes, setRoutes] = useState<Route[]>([]);
 
   const [formData, setFormData] = useState({
     route_id: "",
@@ -33,7 +37,7 @@ export const FareModal = ({ onFareAdded }: { onFareAdded?: () => void }) => {
     try {
       const res = await fetch("/api/admin/routes");
       const data = await res.json();
-      if (res.ok) setRoutes(data.filter((r: any) => r.status === "active"));
+      if (res.ok) setRoutes(data.filter((r: Route) => r.status === "active"));
     } catch(err) {
       console.error(err);
     }
@@ -63,8 +67,8 @@ export const FareModal = ({ onFareAdded }: { onFareAdded?: () => void }) => {
       setOpen(false);
       setFormData({ route_id: "", base_fare: "50", per_km_rate: "2.50", student_discount_pct: "20", senior_discount_pct: "20" });
       if (onFareAdded) onFareAdded();
-    } catch (err: any) {
-      alert("Failed to save fare: " + err.message);
+    } catch (err: unknown) {
+      alert("Failed to save fare: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
       setLoading(false);
     }

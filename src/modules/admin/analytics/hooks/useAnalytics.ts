@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { PerformanceMetric, RevenuePoint, NetworkShare } from "../types";
 
 export const useAnalytics = () => {

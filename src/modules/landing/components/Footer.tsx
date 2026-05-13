@@ -59,7 +59,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-foreground/70 font-medium max-w-xs leading-relaxed">
-              The next generation of fleet management. Powering the world's most efficient transportation networks.
+              The next generation of fleet management. Powering the world&apos;s most efficient transportation networks.
             </p>
             <div className="flex gap-4">
               <Link href="#" className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all border border-border/50">

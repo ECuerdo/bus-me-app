@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 let css = fs.readFileSync('src/app/globals.css', 'utf8');
 
@@ -66,7 +67,6 @@ const startIndex = css.search(startRegex);
 
 if (startIndex !== -1) {
   // Find the end index right before `--sidebar` is defined
-  const endMarker = ':root {\\n  --sidebar: hsl(0 0% 98%);';
   const endIndex = css.indexOf(':root {\n  --sidebar:');
   
   if (endIndex !== -1) {

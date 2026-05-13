@@ -25,7 +25,16 @@ export const useFares = () => {
       if (!res.ok) throw new Error("Failed to fetch fares");
       const data = await res.json();
 
-      const formatted: FareRate[] = data.map((f: any) => ({
+      interface RawFare {
+        routes?: { code: string; name: string };
+        base_fare: number | string;
+        per_km_rate: number | string;
+        student_discount_pct: number;
+        senior_discount_pct: number;
+        status: string;
+      }
+
+      const formatted: FareRate[] = data.map((f: RawFare) => ({
         id: f.routes?.code || "UNK",
         route: f.routes?.name || "Unknown Route",
         base: Number(f.base_fare),

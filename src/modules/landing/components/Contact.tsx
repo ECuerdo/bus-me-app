@@ -20,7 +20,7 @@ export function Contact() {
               className="space-y-6"
             >
               <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-                Let's Start a <br />
+                Let&apos;s Start a <br />
                 <span className="text-primary italic">Conversation.</span>
               </h2>
               <p className="text-muted-foreground text-lg font-medium">

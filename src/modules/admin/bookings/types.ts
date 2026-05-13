@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 export interface Booking {
   id: string;
   passenger: string;
@@ -22,6 +24,6 @@ export interface CargoItem {
 export interface BookingStat {
   label: string;
   val: string;
-  icon: any;
+  icon: ElementType;
   col: string;
 }

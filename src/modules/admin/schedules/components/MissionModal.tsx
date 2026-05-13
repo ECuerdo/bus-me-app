@@ -8,12 +8,16 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
+interface Bus { id: string; plate_number: string; status: string }
+interface Route { id: string; name: string; status: string }
+interface Driver { id: string; first_name: string; last_name: string; status: string }
+
 export const MissionModal = ({ onScheduleAdded }: { onScheduleAdded?: () => void }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [buses, setBuses] = useState<any[]>([]);
-  const [routes, setRoutes] = useState<any[]>([]);
-  const [drivers, setDrivers] = useState<any[]>([]);
+  const [buses, setBuses] = useState<Bus[]>([]);
+  const [routes, setRoutes] = useState<Route[]>([]);
+  const [drivers, setDrivers] = useState<Driver[]>([]);
 
   const [formData, setFormData] = useState({
     bus_id: "",
@@ -36,9 +40,9 @@ export const MissionModal = ({ onScheduleAdded }: { onScheduleAdded?: () => void
         fetch("/api/admin/routes").then(res => res.json()),
         fetch("/api/admin/drivers").then(res => res.json())
       ]);
-      setBuses(busRes.filter((b: any) => b.status === "available"));
-      setRoutes(routeRes.filter((r: any) => r.status === "active"));
-      setDrivers(driverRes.filter((d: any) => d.status === "active"));
+      setBuses(busRes.filter((b: Bus) => b.status === "available"));
+      setRoutes(routeRes.filter((r: Route) => r.status === "active"));
+      setDrivers(driverRes.filter((d: Driver) => d.status === "active"));
     } catch(err) {
       console.error("Error loading lookups:", err);
     }
@@ -72,9 +76,9 @@ export const MissionModal = ({ onScheduleAdded }: { onScheduleAdded?: () => void
        setOpen(false);
        setFormData({ bus_id: "", route_id: "", driver_id: "", departure_time: "", estimated_arrival: "" });
        if (onScheduleAdded) onScheduleAdded();
-    } catch (err: any) {
+    } catch (err: unknown) {
        console.error("Error creating schedule:", err);
-       alert("Failed to create schedule: " + err.message);
+       alert("Failed to create schedule: " + (err instanceof Error ? err.message : "Unknown error"));
     } finally {
        setLoading(false);
     }

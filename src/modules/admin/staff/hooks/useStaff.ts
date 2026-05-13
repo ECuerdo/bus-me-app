@@ -17,7 +17,17 @@ export const useStaff = () => {
       if (!res.ok) throw new Error("Failed to fetch drivers");
       const data = await res.json();
       
-      const formattedStaff: StaffMember[] = data.map((d: any) => ({
+      interface RawDriver {
+        id: string;
+        first_name: string;
+        last_name: string;
+        status: string;
+        license_number: string;
+        contact_number: string;
+        created_at: string;
+      }
+
+      const formattedStaff: StaffMember[] = data.map((d: RawDriver) => ({
         id: "DRV-" + d.id.substring(0, 5).toUpperCase(),
         name: `${d.first_name} ${d.last_name}`,
         role: "Driver",

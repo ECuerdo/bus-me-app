@@ -2,14 +2,12 @@
 
 import React from "react";
 import { 
-  Plus, 
   Search, 
   Filter
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useRoutes } from "./hooks/useRoutes";
-import { RouteModal } from "./components/RouteModal";
 import { RoutesTable } from "./components/RoutesTable";
 
 import { RouteBuilder } from "./components/RouteBuilder";

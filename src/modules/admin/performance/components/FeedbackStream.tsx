@@ -34,7 +34,7 @@ export const FeedbackStream = ({ feedbacks }: FeedbackStreamProps) => {
                        <Star key={star} className={cn("h-3 w-3", star < fb.rating ? "text-amber-500 fill-amber-500" : "text-muted/30")} />
                      ))}
                   </div>
-                  <p className="text-xs font-medium text-foreground leading-relaxed italic">"{fb.comment}"</p>
+                  <p className="text-xs font-medium text-foreground leading-relaxed italic">&quot;{fb.comment}&quot;</p>
                   <div className="mt-3 pt-3 border-t border-primary/5 text-card-foreground flex items-center justify-between">
                      <span className="text-[9px] font-black uppercase text-primary tracking-widest">FOR: {fb.driver}</span>
                      <Button variant="ghost" size="sm" className="h-6 px-3 rounded-lg text-[9px] font-black transition-all hover:bg-primary/10 text-foreground">Respond</Button>

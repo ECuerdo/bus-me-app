@@ -12,8 +12,6 @@ import {
   Thermometer, 
   Wind, 
   Eye, 
-  Siren,
-  Banknote,
   RadioTower,
   CloudLightning,
   Sun
@@ -53,11 +51,14 @@ export default function WeatherModule() {
 
   // Initial and "live" updates
   useEffect(() => {
-    // Set initial time to avoid hydration mismatch
-    setWeather(prev => ({
-      ...prev,
-      lastUpdated: new Date().toLocaleTimeString(),
-    }));
+    const updateTime = () => {
+      setWeather(prev => ({
+        ...prev,
+        lastUpdated: new Date().toLocaleTimeString(),
+      }));
+    };
+
+    updateTime(); // Initial update on mount
 
     const timer = setInterval(() => {
       setWeather(prev => ({

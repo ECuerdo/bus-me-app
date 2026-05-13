@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { AlertCircle, ArrowRight, Rss, Loader2 } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useIncidents } from "../hooks/useIncidents";
 import { IncidentModal } from "./IncidentModal";

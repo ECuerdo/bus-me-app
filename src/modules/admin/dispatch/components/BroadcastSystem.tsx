@@ -3,7 +3,6 @@
 import React from "react";
 import { Mic, Radio, Send, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export const BroadcastSystem = () => {
   return (

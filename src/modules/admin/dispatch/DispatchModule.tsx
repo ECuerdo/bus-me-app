@@ -4,7 +4,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { MapPin, Navigation, Settings2, ShieldAlert } from "lucide-react";
+import { Settings2 } from "lucide-react";
 import { TrafficMonitor } from "./components/TrafficMonitor";
 import { BroadcastSystem } from "./components/BroadcastSystem";
 import { MissionModal } from "../schedules/components/MissionModal";

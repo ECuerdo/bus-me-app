@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonials = [
   {
@@ -54,7 +54,7 @@ export function Testimonials() {
                   ))}
                 </div>
                 <p className="text-lg font-medium leading-relaxed italic">
-                  "{t.content}"
+                  &quot;{t.content}&quot;
                 </p>
                 <div className="flex items-center gap-4 pt-4">
                   <Avatar className="h-12 w-12 border-2 border-primary/20">

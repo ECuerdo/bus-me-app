@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 export interface Bus {
   id: string;
   plate: string;
@@ -21,6 +23,6 @@ export interface MaintenanceLog {
 export interface FleetStats {
   label: string;
   val: string;
-  icon: any;
+  icon: ElementType;
   col: string;
 }

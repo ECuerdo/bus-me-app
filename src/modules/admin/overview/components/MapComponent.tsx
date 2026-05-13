@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 // Premium Bus Icon Creator
-const createBusIcon = (theme: string | undefined) => {
+const createBusIcon = () => {
   return L.divIcon({
     className: "custom-bus-icon",
     html: `
@@ -172,7 +172,7 @@ export default function MapComponent() {
           <Marker 
             key={bus.id} 
             position={bus.position} 
-            icon={createBusIcon(theme)}
+            icon={createBusIcon()}
             eventHandlers={{
               mouseover: (e) => {
                 e.target.openTooltip();
