@@ -46,13 +46,19 @@ export default function WeatherModule() {
     humidity: 72,
     windSpeed: 12,
     visibility: 10,
-    lastUpdated: new Date().toLocaleTimeString(),
+    lastUpdated: "Initializing...",
   });
 
   const [activeLayer, setActiveLayer] = useState<"wind" | "rain" | "clouds" | "radar" | "temp">("wind");
 
-  // Mock "live" updates
+  // Initial and "live" updates
   useEffect(() => {
+    // Set initial time to avoid hydration mismatch
+    setWeather(prev => ({
+      ...prev,
+      lastUpdated: new Date().toLocaleTimeString(),
+    }));
+
     const timer = setInterval(() => {
       setWeather(prev => ({
         ...prev,
