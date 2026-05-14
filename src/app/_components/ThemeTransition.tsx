@@ -10,8 +10,9 @@ export function ThemeTransition() {
   const [variant, setVariant] = useState(0);
 
   useEffect(() => {
-    const handleTransition = (e: any) => {
-      setTargetTheme(e.detail);
+    const handleTransition = (e: Event) => {
+      const customEvent = e as CustomEvent<"light" | "dark">;
+      setTargetTheme(customEvent.detail);
       setVariant(Math.floor(Math.random() * 3)); // Pick one of 3 variants
       setIsActive(true);
       setTimeout(() => {

@@ -10,7 +10,6 @@ import {
   Loader2,
 } from "lucide-react"
 import { useTheme } from "next-themes"
-import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -40,7 +39,7 @@ export function NavUser({
     avatar: string
   }
 }) {
-  const { setTheme, theme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const router = useRouter()
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 

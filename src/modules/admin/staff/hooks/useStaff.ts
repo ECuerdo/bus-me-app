@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { StaffMember } from "../types";
+import { staffProvider } from "../fetchProviders/staffProvider";
 
 export const useStaff = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,29 +14,7 @@ export const useStaff = () => {
   const fetchStaff = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/admin/drivers");
-      if (!res.ok) throw new Error("Failed to fetch drivers");
-      const data = await res.json();
-      
-      interface RawDriver {
-        id: string;
-        first_name: string;
-        last_name: string;
-        status: string;
-        license_number: string;
-        contact_number: string;
-        created_at: string;
-      }
-
-      const formattedStaff: StaffMember[] = data.map((d: RawDriver) => ({
-        id: "DRV-" + d.id.substring(0, 5).toUpperCase(),
-        name: `${d.first_name} ${d.last_name}`,
-        role: "Driver",
-        status: d.status === "on_leave" ? "On-Leave" : d.status.charAt(0).toUpperCase() + d.status.slice(1),
-        email: d.license_number, 
-        phone: d.contact_number,
-        joined: new Date(d.created_at).toISOString().split('T')[0]
-      }));
+      const formattedStaff = await staffProvider.getStaff();
       setStaff(formattedStaff);
     } catch (err) {
       console.error("Error fetching staff:", err);
