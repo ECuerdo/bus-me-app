@@ -32,7 +32,7 @@ export const fleetProvider = {
     }));
   },
 
-  registerBus: async (busData: any): Promise<void> => {
+  registerBus: async (busData: Omit<RawBus, "id">): Promise<void> => {
     const res = await fetch("/api/admin/buses", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

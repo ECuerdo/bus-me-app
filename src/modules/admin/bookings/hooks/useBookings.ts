@@ -8,10 +8,6 @@ export const useBookings = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBookings();
-  }, []);
-
   const fetchBookings = async () => {
     setIsLoading(true);
     try {
@@ -22,6 +18,13 @@ export const useBookings = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchBookings();
+    };
+    init();
+  }, []);
 
   const cargo: CargoItem[] = [
     { id: "WB-4001", sender: "Juan Luna", receiver: "Jose Rizal", type: "Perishable", wt: "15kg", fee: "₱450.00", status: "In Transit" },

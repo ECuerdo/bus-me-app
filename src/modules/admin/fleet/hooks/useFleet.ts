@@ -8,10 +8,6 @@ export const useFleet = () => {
   const [buses, setBuses] = useState<Bus[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBuses();
-  }, []);
-
   const fetchBuses = async () => {
     setIsLoading(true);
     try {
@@ -22,6 +18,13 @@ export const useFleet = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchBuses();
+    };
+    init();
+  }, []);
 
   const maintenanceLogs: MaintenanceLog[] = [
     { id: "M-501", plate: "ABC-1234", action: "Change Oil", schedule: "2024-03-25", status: "Pending", cert: "LTO/LTFRB Valid" },

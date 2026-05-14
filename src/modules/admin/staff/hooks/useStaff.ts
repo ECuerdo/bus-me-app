@@ -7,10 +7,6 @@ export const useStaff = () => {
   const [staff, setStaff] = useState<StaffMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchStaff();
-  }, []);
-
   const fetchStaff = async () => {
     setIsLoading(true);
     try {
@@ -21,6 +17,13 @@ export const useStaff = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchStaff();
+    };
+    init();
+  }, []);
 
   const filteredStaff = useMemo(() => {
     return staff.filter(s => 

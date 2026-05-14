@@ -7,10 +7,6 @@ export const useRoutes = () => {
   const [routes, setRoutes] = useState<TransitRoute[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchRoutes();
-  }, []);
-
   const fetchRoutes = async () => {
     setIsLoading(true);
     try {
@@ -21,6 +17,13 @@ export const useRoutes = () => {
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchRoutes();
+    };
+    init();
+  }, []);
 
   const filteredRoutes = useMemo(() => {
     return routes.filter(route => 

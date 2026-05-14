@@ -8,8 +8,14 @@ import {
 import { DashboardStat, BusTelemetry, PassengerDensity } from "../types";
 import { overviewProvider } from "../fetchProviders/overviewProvider";
 
+interface RawOverviewStat {
+  label: string;
+  value: string;
+  change: string;
+}
+
 export const useOverview = () => {
-  const [apiStats, setApiStats] = useState<any[]>([]);
+  const [apiStats, setApiStats] = useState<RawOverviewStat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
