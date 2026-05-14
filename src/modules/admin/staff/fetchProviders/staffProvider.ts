@@ -20,10 +20,9 @@ export const staffProvider = {
       id: "DRV-" + d.id.substring(0, 5).toUpperCase(),
       name: `${d.first_name} ${d.last_name}`,
       role: "Driver",
-      status:
-        d.status === "on_leave"
-          ? "On-Leave"
-          : d.status.charAt(0).toUpperCase() + d.status.slice(1),
+      status: (d.status === "on_leave"
+        ? "On-Leave"
+        : d.status.charAt(0).toUpperCase() + d.status.slice(1)) as StaffMember["status"],
       email: d.license_number,
       phone: d.contact_number,
       joined: new Date(d.created_at).toISOString().split("T")[0],
