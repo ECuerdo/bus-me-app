@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeTransition } from "@/app/_components/ThemeTransition";
 
 export default function RootLayout({
   children,
@@ -33,7 +34,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -41,6 +42,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
+            <ThemeTransition />
             {children}
             <Toaster position="top-right" closeButton richColors />
           </TooltipProvider>

@@ -315,8 +315,8 @@
 html.theme-switching,
 html.theme-switching * {
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow;
-  transition-duration: 220ms;
-  transition-timing-function: ease;
+  transition-duration: 400ms !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 /* Respect reduced motion */

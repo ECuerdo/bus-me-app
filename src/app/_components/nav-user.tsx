@@ -7,11 +7,9 @@ import {
   ChevronsUpDown,
   Sun,
   Moon,
-  Monitor,
   Loader2,
 } from "lucide-react"
 import { useTheme } from "next-themes"
-import { cn } from "@/lib/utils"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -41,7 +39,7 @@ export function NavUser({
     avatar: string
   }
 }) {
-  const { setTheme, theme } = useTheme()
+  const { setTheme, resolvedTheme } = useTheme()
   const router = useRouter()
   const [isLoggingOut, setIsLoggingOut] = useState(false)
 
@@ -62,6 +60,24 @@ export function NavUser({
     } finally {
       setIsLoggingOut(false)
     }
+  }
+
+  const handleThemeChange = (newTheme: string) => {
+    // Dispatch custom event for the premium overlay
+    window.dispatchEvent(new CustomEvent('theme-transition', { detail: newTheme }));
+
+    // Delay the actual theme swap to happen during the overlay mid-point
+    setTimeout(() => {
+      if (document.documentElement) {
+        document.documentElement.classList.add('theme-switching');
+        setTheme(newTheme);
+        setTimeout(() => {
+          document.documentElement.classList.remove('theme-switching');
+        }, 400); 
+      } else {
+        setTheme(newTheme);
+      }
+    }, 600); // Wait for panels to cover the screen
   }
 
   return (
@@ -107,25 +123,20 @@ export function NavUser({
             Interface Theme
           </DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => setTheme("light")}
-            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "light" && "bg-primary/5 text-primary")}
+            onClick={() => handleThemeChange(resolvedTheme === "dark" ? "light" : "dark")}
+            className="cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors"
           >
-            <Sun className="h-4 w-4" />
-            Light Mode
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setTheme("dark")}
-            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "dark" && "bg-primary/5 text-primary")}
-          >
-            <Moon className="h-4 w-4" />
-            Dark Mode
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => setTheme("system")}
-            className={cn("cursor-pointer gap-2.5 rounded-xl h-10 font-bold text-xs focus:bg-primary/10 transition-colors", theme === "system" && "bg-primary/5 text-primary")}
-          >
-            <Monitor className="h-4 w-4" />
-            System Default
+            {resolvedTheme === "dark" ? (
+              <>
+                <Sun className="h-4 w-4 text-amber-500" />
+                <span>Switch to Light Mode</span>
+              </>
+            ) : (
+              <>
+                <Moon className="h-4 w-4 text-primary" />
+                <span>Switch to Dark Mode</span>
+              </>
+            )}
           </DropdownMenuItem>
         </DropdownMenuGroup>
 

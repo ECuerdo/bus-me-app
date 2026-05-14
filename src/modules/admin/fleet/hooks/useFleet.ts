@@ -1,48 +1,30 @@
 import { useState, useMemo, useEffect } from "react";
 import { Wrench, ShieldCheck, Calendar } from "lucide-react";
 import { Bus, MaintenanceLog } from "../types";
+import { fleetProvider } from "../fetchProviders/fleetProvider";
 
 export const useFleet = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [buses, setBuses] = useState<Bus[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    fetchBuses();
-  }, []);
-
   const fetchBuses = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/admin/buses");
-      if (!res.ok) throw new Error("Failed to fetch buses");
-      const data = await res.json();
-      
-      interface RawBus {
-        id: string;
-        plate_number: string;
-        capacity: number;
-        status: string;
-        last_maintenance_date?: string;
-        model: string;
-      }
-
-      const formattedBuses: Bus[] = data.map((b: RawBus) => ({
-        id: b.id.substring(0, 8), 
-        plate: b.plate_number,
-        type: b.capacity > 40 ? "Executive" : "Regular",
-        status: b.status === "in_transit" ? "In Transit" : b.status === "out_of_service" ? "Out of Service" : b.status.charAt(0).toUpperCase() + b.status.slice(1),
-        route: "Unassigned", 
-        condition: b.last_maintenance_date ? "Fair" : "Excellent", 
-        model: b.model,
-        capacity: b.capacity
-      }));
+      const formattedBuses = await fleetProvider.getBuses();
       setBuses(formattedBuses);
     } catch (err) {
       console.error("Error fetching buses:", err);
     }
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await fetchBuses();
+    };
+    init();
+  }, []);
 
   const maintenanceLogs: MaintenanceLog[] = [
     { id: "M-501", plate: "ABC-1234", action: "Change Oil", schedule: "2024-03-25", status: "Pending", cert: "LTO/LTFRB Valid" },
