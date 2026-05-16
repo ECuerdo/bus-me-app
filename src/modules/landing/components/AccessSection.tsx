@@ -22,19 +22,19 @@ export function AccessSection() {
           >
             <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
               Secure Access for <br />
-              <span className="text-primary italic">Your Enterprise.</span>
+              <span className="text-primary">Your Business.</span>
             </h2>
             <p className="text-lg text-muted-foreground font-medium max-w-lg">
-              Experience the industry-leading security protocol designed for high-stakes logistics management. Quick, secure, and encrypted.
+              Experience top-level security built for transport management. Fast, safe, and protected.
             </p>
           </motion.div>
 
           <div className="space-y-4">
             {[
-              "Biometric-ready authentication",
-              "End-to-end cryptographic encryption",
-              "Multi-node session management",
-              "Real-time terminal auditing"
+              "Fingerprint and Face ID login",
+              "Secure data protection",
+              "Manage multiple sessions",
+              "Live security monitoring"
             ].map((feature, i) => (
               <motion.div 
                 key={feature}
@@ -67,17 +67,17 @@ export function AccessSection() {
                     </div>
                     <div className="space-y-2">
                         <CardTitle className="text-4xl font-black tracking-tighter text-foreground">
-                            Authorize Access
+                            Sign In
                         </CardTitle>
                         <CardDescription className="text-xs uppercase font-black tracking-[0.2em] text-primary">
-                            Enterprise Logistics Management
+                            Logistics Management
                         </CardDescription>
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-6">
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground"> Email Identity </Label>
+                            <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground"> Email Address </Label>
                             <Input
                                 disabled
                                 placeholder="name@enterprise.com"
@@ -85,7 +85,7 @@ export function AccessSection() {
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground"> Cryptographic Key </Label>
+                            <Label className="text-[10px] uppercase font-black tracking-widest ml-1 text-muted-foreground"> Password </Label>
                             <Input
                                 disabled
                                 type="password"
@@ -97,7 +97,7 @@ export function AccessSection() {
 
                     <Link href="/login">
                         <Button className="h-14 w-full rounded-2xl font-black text-sm uppercase tracking-widest bg-primary text-primary-foreground hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 mt-4">
-                            Proceed to Live Terminal
+                            Go to Dashboard
                             <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
                     </Link>

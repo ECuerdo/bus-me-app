@@ -20,11 +20,11 @@ export function Contact() {
               className="space-y-6"
             >
               <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-                Let&apos;s Start a <br />
-                <span className="text-primary italic">Conversation.</span>
+                Get in Touch <br />
+                <span className="text-primary">with Us.</span>
               </h2>
               <p className="text-muted-foreground text-lg font-medium">
-                Ready to optimize your fleet? Our experts are here to help you scale your operations with BUSME.
+                Want to make your business better? Our team is here to help you get started with BUSME.
               </p>
             </motion.div>
 
@@ -85,7 +85,7 @@ export function Contact() {
                 <Textarea placeholder="How can we help you?" className="min-h-[150px] bg-muted/20 border-white/5 rounded-3xl font-bold p-6" />
               </div>
               <Button className="w-full h-16 rounded-[2rem] bg-primary text-primary-foreground font-black text-sm uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all mt-4">
-                Send Message
+                Send
                 <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>

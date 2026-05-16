@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Bus, Menu, X, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/app/_components/ThemeToggle";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,12 +60,13 @@ export function Navbar() {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
+          <ThemeToggle />
           <Link href="/login">
-            <Button variant="ghost" className="font-bold">Log in</Button>
+            <Button variant="ghost" className="font-bold">Login</Button>
           </Link>
           <Link href="/signup">
             <Button className="rounded-full font-bold px-6 shadow-lg shadow-primary/20">
-              Get Started
+              Sign Up
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
@@ -101,11 +103,15 @@ export function Navbar() {
               ))}
               <hr className="border-border" />
               <div className="flex flex-col gap-3">
+                <div className="flex items-center justify-between px-2 mb-2">
+                   <span className="text-xs font-black uppercase tracking-widest text-muted-foreground">Appearance</span>
+                   <ThemeToggle />
+                </div>
                 <Link href="/login" className="w-full">
-                  <Button variant="outline" className="w-full font-bold h-12">Log in</Button>
+                  <Button variant="outline" className="w-full font-bold h-12">Login</Button>
                 </Link>
                 <Link href="/signup" className="w-full">
-                  <Button className="w-full font-bold h-12">Get Started</Button>
+                  <Button className="w-full font-bold h-12">Sign Up</Button>
                 </Link>
               </div>
             </div>

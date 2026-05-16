@@ -25,7 +25,7 @@ export function Hero() {
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-black uppercase tracking-widest border border-primary/20">
               <Zap className="h-3.5 w-3.5 fill-current" />
-              Revolutionizing Fleet Management
+              The Easiest Way to Manage Your Fleet
             </span>
           </motion.div>
 
@@ -36,7 +36,7 @@ export function Hero() {
             className="text-6xl md:text-8xl font-black tracking-tight leading-[0.85] text-foreground drop-shadow-2xl"
           >
             Smart Logistics <br />
-            <span className="text-primary italic drop-shadow-[0_0_30px_rgba(var(--primary),0.5)] relative">
+            <span className="text-primary drop-shadow-[0_0_30px_rgba(var(--primary),0.5)] relative">
                 Simplified.
                 <motion.div 
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
@@ -52,7 +52,7 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="text-xl text-foreground/80 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed drop-shadow-md"
           >
-            Manage your entire fleet, track routes in real-time, and optimize your operations with our enterprise-grade bus management platform.
+            Monitor your buses, track routes live, and keep everything running smoothly with our all-in-one platform.
           </motion.p>
 
           <motion.div
@@ -63,7 +63,7 @@ export function Hero() {
           >
             <Link href="/signup">
               <Button size="lg" className="h-14 px-8 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
-                Start Free Trial
+                Try it for Free
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
