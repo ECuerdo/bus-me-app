@@ -14,40 +14,40 @@ import { cn } from "@/lib/utils";
 
 const features = [
   {
-    title: "Real-time Tracking",
-    description: "Monitor your entire fleet with GPS precision and instant status updates.",
+    title: "Live Tracking",
+    description: "Track all your buses live with GPS and get quick updates.",
     icon: Navigation,
     color: "bg-blue-500/10 text-blue-500",
     className: "md:col-span-2 md:row-span-2",
   },
   {
-    title: "Secure Payments",
-    description: "Enterprise-grade security for all ticketing transactions.",
+    title: "Safe Payments",
+    description: "Your ticket payments are always safe and secure.",
     icon: ShieldCheck,
     color: "bg-green-500/10 text-green-500",
   },
   {
-    title: "Analytics Dashboard",
-    description: "Deep insights into performance and revenue metrics.",
+    title: "Reports and Profits",
+    description: "Easily see how your business is doing and how much you've earned.",
     icon: BarChart3,
     color: "bg-purple-500/10 text-purple-500",
   },
   {
-    title: "Multi-Region Support",
-    description: "Seamlessly manage routes across multiple cities or countries.",
+    title: "Works Everywhere",
+    description: "Manage routes across different cities or areas with no trouble.",
     icon: Globe,
     color: "bg-orange-500/10 text-orange-500",
     className: "md:col-span-2",
   },
   {
-    title: "Smart Scheduling",
-    description: "AI-driven route optimization and schedule management.",
+    title: "Smart Route Planning",
+    description: "Plan the best routes and schedules automatically.",
     icon: Clock,
     color: "bg-pink-500/10 text-pink-500",
   },
   {
-    title: "Cross-Platform",
-    description: "Access from mobile, tablet, or desktop with ease.",
+    title: "Use on any Device",
+    description: "Use it on your phone, tablet, or computer anytime.",
     icon: Smartphone,
     color: "bg-indigo-500/10 text-indigo-500",
   },
@@ -73,7 +73,7 @@ export function Features() {
             className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]"
           >
             Powerful Features for <br />
-            <span className="text-primary italic">Modern Logistics.</span>
+            <span className="text-primary">Your Business.</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -82,7 +82,7 @@ export function Features() {
             transition={{ delay: 0.1 }}
             className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium"
           >
-            Everything you need to run a high-performance transportation business in one unified platform.
+            All the tools you need to run your transport business in one place.
           </motion.p>
         </div>
 

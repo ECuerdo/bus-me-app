@@ -59,7 +59,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-foreground/70 font-medium max-w-xs leading-relaxed">
-              The next generation of fleet management. Powering the world&apos;s most efficient transportation networks.
+              Smart fleet management for everyone. Helping transportation businesses run better every day.
             </p>
             <div className="flex gap-4">
               <Link href="#" className="w-10 h-10 rounded-full bg-muted flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-all border border-border/50">
@@ -94,7 +94,7 @@ export function Footer() {
 
         <div className="pt-12 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6">
           <p className="text-[10px] font-black uppercase tracking-widest text-foreground/40">
-            © {currentYear} BUSME ENTERPRISE LOGISTICS. ALL RIGHTS RESERVED.
+            © {currentYear} BUSME. ALL RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/40">
             <Mail className="h-3 w-3" />

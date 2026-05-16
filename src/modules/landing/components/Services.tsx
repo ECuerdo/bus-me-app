@@ -7,43 +7,43 @@ import { cn } from "@/lib/utils";
 
 const services = [
   {
-    title: "Real-time Tracking",
-    description: "Enterprise-grade GPS tracking with millisecond latency for precise fleet monitoring.",
+    title: "Live Tracking",
+    description: "Accurate GPS tracking to monitor your buses anytime, anywhere.",
     icon: MapPin,
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
   {
-    title: "Secure Payments",
-    description: "Next-gen cryptographic payment processing for secure and fast transactions.",
+    title: "Safe Payments",
+    description: "Fast and secure payment processing for all your business transactions.",
     icon: Shield,
     color: "text-green-500",
     bg: "bg-green-500/10",
   },
   {
-    title: "Route Optimization",
-    description: "AI-powered algorithms to find the most efficient routes and reduce fuel consumption.",
+    title: "Route Planning",
+    description: "Smart route planning to save time and reduce fuel costs.",
     icon: Zap,
     color: "text-yellow-500",
     bg: "bg-yellow-500/10",
   },
   {
-    title: "Advanced Analytics",
-    description: "Deep-dive data insights with customizable dashboards and automated reporting.",
+    title: "Simple Analytics",
+    description: "Simple dashboards and reports to help you understand your business data.",
     icon: BarChart,
     color: "text-purple-500",
     bg: "bg-purple-500/10",
   },
   {
-    title: "Driver Companion",
-    description: "A dedicated mobile experience for drivers to manage their shifts and routes.",
+    title: "Driver App",
+    description: "An easy-to-use mobile app for drivers to check their schedules and routes.",
     icon: Smartphone,
     color: "text-pink-500",
     bg: "bg-pink-500/10",
   },
   {
     title: "Fleet Management",
-    description: "Complete lifecycle management for your vehicles, from maintenance to disposal.",
+    description: "Manage everything for your buses, from repairs to daily operations.",
     icon: Users,
     color: "text-indigo-500",
     bg: "bg-indigo-500/10",
@@ -56,10 +56,10 @@ export function Services() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center space-y-6 mb-20">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-            Our Elite <span className="text-primary italic">Services.</span>
+            What We <span className="text-primary">Offer.</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium">
-            Discover how our advanced technology can transform your logistics operations.
+            See how our tools can help make your transport business better.
           </p>
         </div>
 

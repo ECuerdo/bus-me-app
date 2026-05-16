@@ -18,11 +18,11 @@ export function About() {
           >
             <div className="space-y-6">
               <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-                Pioneering the Future of <br />
-                <span className="text-primary italic">Mobility.</span>
+                The Modern Way to <br />
+                <span className="text-primary">Move.</span>
               </h2>
               <p className="text-lg text-muted-foreground font-medium leading-relaxed max-w-xl">
-                Founded with a vision to streamline complex logistics, BUSME has evolved into a global leader in fleet management technology. We empower transportation companies to operate with unprecedented efficiency and security.
+                We started BUSME to make fleet management easy. Our goal is to help transport companies run their business with better tools and security.
               </p>
             </div>
 
@@ -32,14 +32,14 @@ export function About() {
                      <Target className="h-6 w-6" />
                   </div>
                   <h4 className="text-xl font-black">Our Mission</h4>
-                  <p className="text-sm text-muted-foreground font-medium">To deliver world-class automation for the logistics industry.</p>
+                  <p className="text-sm text-muted-foreground font-medium">To make logistics easier and automated for everyone.</p>
                </div>
                <div className="space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
                      <Users className="h-6 w-6" />
                   </div>
                   <h4 className="text-xl font-black">Our Community</h4>
-                  <p className="text-sm text-muted-foreground font-medium">Supporting thousands of drivers and operators worldwide.</p>
+                  <p className="text-sm text-muted-foreground font-medium">Helping thousands of drivers and operators every day.</p>
                </div>
             </div>
           </motion.div>

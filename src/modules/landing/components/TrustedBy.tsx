@@ -12,7 +12,7 @@ export function TrustedBy() {
     <section className="py-12 border-b border-border/50 bg-background/50 backdrop-blur-sm relative z-10">
       <div className="max-w-7xl mx-auto px-6">
         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-center text-muted-foreground/60 mb-8">
-          Trusted by Industry Leaders Worldwide
+          Trusted by Leading Companies
         </p>
         <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
           {companies.map((company, index) => (

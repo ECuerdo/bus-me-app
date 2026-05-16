@@ -9,19 +9,19 @@ const testimonials = [
   {
     name: "Alex Rivera",
     role: "Operations Director, MetroLink",
-    content: "BUSME transformed our dispatch workflow. We've seen a 30% reduction in fuel costs since implementation.",
+    content: "BUSME changed the way we work. We saved 30% on fuel costs since we started using it.",
     avatar: "AR",
   },
   {
     name: "Sarah Chen",
     role: "Fleet Manager, CityConnect",
-    content: "The real-time tracking is second to none. Our drivers and passengers have never been more synchronized.",
+    content: "The live tracking is the best. Our drivers and passengers are always in sync.",
     avatar: "SC",
   },
   {
     name: "Marcus Thorne",
     role: "CEO, Thorne Logistics",
-    content: "Enterprise-grade security and a user experience that my team actually loves. Highly recommended.",
+    content: "It's very secure and easy to use. My team loves it. I highly recommend BUSME.",
     avatar: "MT",
   },
 ];
@@ -32,7 +32,7 @@ export function Testimonials() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center space-y-6 mb-20">
           <h2 className="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
-            Loved by <span className="text-primary italic">Fleet Managers.</span>
+            What Our <span className="text-primary">Users Say.</span>
           </h2>
         </div>
 
@@ -53,7 +53,7 @@ export function Testimonials() {
                     <Star key={i} className="h-4 w-4 fill-primary text-primary" />
                   ))}
                 </div>
-                <p className="text-lg font-medium leading-relaxed italic">
+                <p className="text-lg font-medium leading-relaxed">
                   &quot;{t.content}&quot;
                 </p>
                 <div className="flex items-center gap-4 pt-4">
